@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Music Player</title>
+    <link rel="stylesheet" type="text/css" href="dist/static/css/main.css" />
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+
+<script>
+    var App = require('./dist/components/App').App
+
+    var ReactDOM = require('react-dom')
+    var React = require('react')
+
+    ReactDOM.render(React.createElement(App, {}), document.getElementById('app'));
+</script>
+
+</html>
