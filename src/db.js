@@ -8,6 +8,11 @@ export const settingsDb = new Datastore({
    filename: __dirname + '/../data/settings.json'
 });
 
+
+// export const settingsDb = new Datastore({
+//    filename: __dirname + '/../data/settings.json'
+// });
+
 export const load = (cb) => {
    settingsDb.loadDatabase(function(settingsErr) {
       console.log(settingsDb);
