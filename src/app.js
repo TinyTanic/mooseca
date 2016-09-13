@@ -6,5 +6,23 @@ import {
    createStore
 } from 'redux'
 
+var App = require('./components/App').App
 
-export const store = createStore(reducers)
+import * as db from './db'
+
+const _store = createStore(reducers)
+
+console.log(db);
+
+db.load((err) => {
+   if (err) {
+      throw err
+   } else {
+      const ReactDOM = require('react-dom')
+      const React = require('react')
+
+      ReactDOM.render(React.createElement(App, {}), window.document.getElementById('app'));
+   }
+})
+
+export const store  = _store

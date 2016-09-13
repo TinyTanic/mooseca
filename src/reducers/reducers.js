@@ -1,13 +1,19 @@
-import * as MusicActions from '../actions/MusicActions'
-
 import {
    musicReducer
 } from './MusicReducers'
+import {
+   libraryReducer
+} from './LibraryReducers'
+import {
+   settingsReducer
+} from './SettingsReducers'
 
 import {
    combineReducers
 } from 'redux'
 
 export const reducers = combineReducers({
-   music: musicReducer
+   music: musicReducer,
+   library: libraryReducer,
+   settings: settingsReducer,
 });

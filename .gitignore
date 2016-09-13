@@ -38,3 +38,6 @@ jspm_packages
 
 # compiled folder
 dist
+
+# DB folder
+dist/*.json
