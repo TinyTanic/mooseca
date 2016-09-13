@@ -1,30 +1,26 @@
 .topbar {
    background-color: #e5e5e5;
-
-   .topbar-component {
-      display: inline;
+   position: relative;
+   // .topbar-component {
+   //    display: inline;
+   // }
+   .element {
+      position: relative;
+      width: 33.33%;
+      display: inline-block;
    }
 
-   .group {
-      display: table;
-      width: 100%;
-      .element {
-         display: table-cell;
-      }
-      .red{
-         background-color: red;
-      }
-      .blue{
-         background-color: blue;
-      }
-
-      .yellow{
-         background-color: yellow;
-      }
+   .center {
+      position: absolute;
+      margin-top: 2em;
+      height: 100%;
    }
-   .t{
-      display: table;
-      width: 100%;
-   }
-   .c{ display: table-cell;}
+   // .left{
+   // }
+   // .right{
+   //    margin-left: 66.66%;
+   // }
+   // .center{
+   //    margin-left: 33.33%;
+   // }
 }
