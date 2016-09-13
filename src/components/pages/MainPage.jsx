@@ -9,6 +9,8 @@ import * as LibraryActions from '../../actions/LibraryActions'
 import * as SettingsActions from '../../actions/SettingsActions'
 
 import TopBar from './TopBar'
+import NavBar from './NavBar'
+import View from './View'
 
 const path = require('path')
 
@@ -45,8 +47,10 @@ var MainPage = React.createClass({
     },
     render() {
         return (
-            <div>
-               <TopBar onPlayPause={this._handlePlayPause}/>
+            <div className="mainpage">
+                <TopBar onPlayPause={this._handlePlayPause}/>
+                <NavBar />
+                <View />
             </div>
         )
     }
