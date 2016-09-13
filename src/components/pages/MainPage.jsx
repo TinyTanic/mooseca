@@ -6,6 +6,8 @@ import {connect} from 'react-redux';
 import * as MusicActions from '../../actions/MusicActions'
 
 import TopBar from './TopBar'
+import NavBar from './NavBar'
+import View from './View'
 
 let pages = {}
 
@@ -28,8 +30,10 @@ var MainPage = React.createClass({
     },
     render() {
         return (
-            <div>
+            <div className="mainpage">
                 <TopBar onPlayPause={this._handlePlayPause}/>
+                <NavBar />
+                <View />
             </div>
         )
     }
