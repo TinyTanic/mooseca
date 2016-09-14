@@ -31,6 +31,7 @@ var MainPage = React.createClass({
       console.log(nextProps);
       if (!this.props.settings.libraryPath && nextProps.settings.libraryPath) {
          // console.log(this.props.settings);
+         console.log('scan');
          this.props.scanLibrary(nextProps.settings.libraryPath)
       }
    },
@@ -47,17 +48,18 @@ var MainPage = React.createClass({
             break;
       }
    },
-   _handleAlbumClick(){
+   _handleAlbumClick() {
       console.log(this.state.sidebar);
       this.setState({sidebar: true})
    },
    render() {
+      console.log(this.state);
       return (
          <div className="mainpage">
             <TopBar onPlayPause={this._handlePlayPause}/>
             <div className="bottom">
                <NavBar/>
-               <View onAlbumClick={this._handleAlbumClick}/>
+               <View library={this.props.library} onAlbumClick={this._handleAlbumClick}/>
                <SideBar isCompressed={this.state.sidebar}/>
             </div>
          </div>

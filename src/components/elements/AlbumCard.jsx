@@ -12,8 +12,8 @@ var AlbumCard = React.createClass({
                   <img src=""></img>
                </div>
                <div className="meta">
-                  <h4 className="album">{'Album'}</h4>
-                  <h5 className="artist">{'Artista'}</h5>
+                  <h4 className="album">{this.props.meta.title}</h4>
+                  <h5 className="artist">{this.props.meta.artist}</h5>
                </div>
             </div>
          </div>

@@ -7,26 +7,17 @@ var View = React.createClass({
       this.props.onAlbumClick()
    },
    render() {
+      let albumsCards = null
+      if (this.props.library && this.props.library.albums) {
+         albumsCards = this.props.library.albums.map((album, index) => {
+            return <AlbumCard key={index} meta={album} onAlbumClick={this._handleAlbumCardClick}/>
+         })
+      }
+      console.log(this.props);
       return (
          <div className="view">
             <div className="scroll">
-               <AlbumCard onAlbumClick={this._handleAlbumCardClick}/>
-               <AlbumCard/>
-               <AlbumCard/>
-               <AlbumCard/>
-               <AlbumCard/>
-               <AlbumCard/>
-               <AlbumCard/>
-               <AlbumCard/>
-               <AlbumCard/>
-               <AlbumCard/>
-               <AlbumCard/>
-               <AlbumCard/>
-               <AlbumCard/>
-               <AlbumCard/>
-               <AlbumCard/>
-               <AlbumCard/>
-               <AlbumCard/>
+               {albumsCards}
                <div className="stretcher">
                   <div className="fuller"></div>
                </div>
