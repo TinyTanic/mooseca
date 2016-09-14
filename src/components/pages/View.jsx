@@ -4,7 +4,7 @@ var View = React.createClass({
 
    render() {
       return (
-         <div className="view"></div>
+         <div className="view">{'ciao'}</div>
       )
    }
 })
