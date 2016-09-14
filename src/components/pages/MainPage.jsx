@@ -14,15 +14,16 @@ import View from './View'
 
 const path = require('path')
 
-
 let pages = {}
 
 var MainPage = React.createClass({
-    getInitialState() {
-        return {}
-    },
+   getInitialState() {
+      return {}
+   },
    componentDidMount() {
-      this.props.getSetting('libraryPath', path.join(process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'], 'Musica'))
+      this.props.getSetting('libraryPath', path.join(process.env[(process.platform == 'win32')
+            ? 'USERPROFILE'
+            : 'HOME'], 'Musica'))
    },
    componentWillUpdate(nextProps) {
       console.log(this.props);
@@ -32,45 +33,44 @@ var MainPage = React.createClass({
          this.props.scanLibrary(nextProps.settings.libraryPath)
       }
    },
-    _handlePlayPause(control) {
-        switch (control.button) {
-            case 'play':
-                this.props.playMusic();
-                break;
-            case 'stop':
-                this.props.stopMusic();
-                break;
-            case 'pause':
-                this.props.pauseMusic();
-                break;
-        }
-    },
-    render() {
-        return (
-            <div className="mainpage">
-                <TopBar onPlayPause={this._handlePlayPause}/>
-                <NavBar />
-                <View />
+   _handlePlayPause(control) {
+      switch (control.button) {
+         case 'play':
+            this.props.playMusic();
+            break;
+         case 'stop':
+            this.props.stopMusic();
+            break;
+         case 'pause':
+            this.props.pauseMusic();
+            break;
+      }
+   },
+   render() {
+      return (
+         <div className="mainpage">
+            <TopBar onPlayPause={this._handlePlayPause}/>
+            <div className="bottom">
+               <NavBar/>
+               <View/>
             </div>
-        )
-    }
+         </div>
+      )
+   }
 })
 
 function mapStateToProps(state) {
-    return {
-      library: state.library,
-      settings: state.settings,
-   }
+   return {library: state.library, settings: state.settings}
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-        playMusic: () => MusicActions.playMusic(dispatch),
-        stopMusic: () => MusicActions.stopMusic(dispatch),
-        pauseMusic: () => MusicActions.pauseMusic(dispatch),
-        getSetting: (key, defaultValue, ) => SettingsActions.getSetting(key, defaultValue, dispatch),
-        scanLibrary: (libraryPath) => LibraryActions.scanLibrary(libraryPath, dispatch),
-    };
+   return {
+      playMusic: () => MusicActions.playMusic(dispatch),
+      stopMusic: () => MusicActions.stopMusic(dispatch),
+      pauseMusic: () => MusicActions.pauseMusic(dispatch),
+      getSetting: (key, defaultValue,) => SettingsActions.getSetting(key, defaultValue, dispatch),
+      scanLibrary: (libraryPath) => LibraryActions.scanLibrary(libraryPath, dispatch)
+   };
 }
 
 var MainPageApp = connect(mapStateToProps, mapDispatchToProps)(MainPage)

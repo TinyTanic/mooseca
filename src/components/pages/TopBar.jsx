@@ -13,21 +13,13 @@ var TopBar = React.createClass({
    render() {
       return (
          <div className="topbar">
-               <div className="element">
-                  {/* {'ciao'} */}
-                  <PlayPausePane onButtonClick={this._handlePlayPauseButtonsClick}/>
-                  <VolumePane/>
-               </div>
-               <div className="element">
-                  {/* {'ciao'} */}
-                  <InfoPane/>
-               </div>
-               <div className="element center">
-                  {/* {'ciao'} */}
-                  <SearchPane/>
-               </div>
+         <div className="group">
+            <PlayPausePane onButtonClick={this._handlePlayPauseButtonsClick}/>
+            <VolumePane/> {/* {'ciao'} */}
+         </div>
+            <InfoPane/> {/* {'ciao'} */}
+            <SearchPane/>
             <WindowButtonsPane/>
-
          </div>
       )
    }

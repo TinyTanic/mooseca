@@ -1,17 +1,18 @@
 .topbar {
+   // order: 1;
    background-color: @gray;
    position: fixed;
    width: 100%;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
 
-   .element {
-      position: relative;
-      width: 33.33%;
-      display: inline-block;
-   }
-
-   .center {
-      position: absolute;
-      margin-top: 2em;
-      height: 100%;
+   .group {
+      order: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 33%;
    }
 }
