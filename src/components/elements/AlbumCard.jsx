@@ -1,10 +1,12 @@
 import React from 'react'
 
 var AlbumCard = React.createClass({
-
+   _handleAlbumCardClick(){
+      this.props.onAlbumClick()
+   },
    render() {
       return (
-         <div className="card">
+         <div className="card" onClick={this._handleAlbumCardClick}>
             <div className="container">
                <div className="image-container">
                   <img src=""></img>

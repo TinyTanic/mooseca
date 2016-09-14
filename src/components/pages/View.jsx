@@ -3,11 +3,14 @@ import AlbumCard from '../elements/AlbumCard'
 
 var View = React.createClass({
 
+   _handleAlbumCardClick() {
+      this.props.onAlbumClick()
+   },
    render() {
       return (
          <div className="view">
             <div className="scroll">
-               <AlbumCard/>
+               <AlbumCard onAlbumClick={this._handleAlbumCardClick}/>
                <AlbumCard/>
                <AlbumCard/>
                <AlbumCard/>

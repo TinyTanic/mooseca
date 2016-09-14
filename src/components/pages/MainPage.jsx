@@ -10,6 +10,7 @@ import * as SettingsActions from '../../actions/SettingsActions'
 
 import TopBar from './TopBar'
 import NavBar from './NavBar'
+import SideBar from './SideBar'
 import View from './View'
 
 const path = require('path')
@@ -18,7 +19,7 @@ let pages = {}
 
 var MainPage = React.createClass({
    getInitialState() {
-      return {}
+      return {sidebar: false}
    },
    componentDidMount() {
       this.props.getSetting('libraryPath', path.join(process.env[(process.platform == 'win32')
@@ -46,13 +47,18 @@ var MainPage = React.createClass({
             break;
       }
    },
+   _handleAlbumClick(){
+      console.log(this.state.sidebar);
+      this.setState({sidebar: true})
+   },
    render() {
       return (
          <div className="mainpage">
             <TopBar onPlayPause={this._handlePlayPause}/>
             <div className="bottom">
                <NavBar/>
-               <View/>
+               <View onAlbumClick={this._handleAlbumClick}/>
+               <SideBar isCompressed={this.state.sidebar}/>
             </div>
          </div>
       )
