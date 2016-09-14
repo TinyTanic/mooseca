@@ -12,6 +12,15 @@ export function libraryReducer(state = initialState, action) {
          } else {
             return state
          }
+      case 'LIBRARY_SCAN':
+         if (!action.err) {
+            return Object.assign({}, state, {
+               artists: action.artists,
+               albums: action.albums,
+            })
+         } else {
+            return state
+         }
       default:
          return state
    }
