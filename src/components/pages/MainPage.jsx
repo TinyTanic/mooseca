@@ -48,19 +48,20 @@ var MainPage = React.createClass({
             break;
       }
    },
-   _handleAlbumClick() {
-      console.log(this.state.sidebar);
-      this.setState({sidebar: true})
+   _handleAlbumClick(album) {
    },
    render() {
-      console.log(this.state);
+      let sidebar = null
+      // if (this.state.showSidebar && this.props.selectedAlbum) {
+      //    sidebar = (<SideBar album={this.props.selectedAlbum}/>)
+      // }
       return (
          <div className="mainpage">
             <TopBar onPlayPause={this._handlePlayPause}/>
             <div className="bottom">
                <NavBar/>
-               <View library={this.props.library} onAlbumClick={this._handleAlbumClick}/>
-               <SideBar isCompressed={this.state.sidebar}/>
+               <View library={this.props.library} onAlbumClick={this._handleAlbumClick}/> {/* <SideBar isCompressed={this.state.sidebar} album={this.state.selectedAlbum}/>  */}
+               {sidebar}
             </div>
          </div>
       )
@@ -68,7 +69,8 @@ var MainPage = React.createClass({
 })
 
 function mapStateToProps(state) {
-   return {library: state.library, settings: state.settings}
+   console.log(state);
+   return {library: state.library, settings: state.settings, selectedAlbum: state.library.selectedAlbum}
 }
 
 function mapDispatchToProps(dispatch) {
@@ -77,7 +79,8 @@ function mapDispatchToProps(dispatch) {
       stopMusic: () => MusicActions.stopMusic(dispatch),
       pauseMusic: () => MusicActions.pauseMusic(dispatch),
       getSetting: (key, defaultValue,) => SettingsActions.getSetting(key, defaultValue, dispatch),
-      scanLibrary: (libraryPath) => LibraryActions.scanLibrary(libraryPath, dispatch)
+      scanLibrary: (libraryPath) => LibraryActions.scanLibrary(libraryPath, dispatch),
+      getSongsByAlbum: album => LibraryActions.getSongsByAlbum(album, dispatch)
    };
 }
 

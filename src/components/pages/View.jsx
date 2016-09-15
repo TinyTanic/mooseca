@@ -3,17 +3,29 @@ import AlbumCard from '../elements/AlbumCard'
 
 var View = React.createClass({
 
-   _handleAlbumCardClick() {
-      this.props.onAlbumClick()
+   _handlePlay(album) {
+      // this.props.onAlbumClick(album)
+      console.log('play album');
+   },
+   _handleAddPlaylist(album){
+   console.log('add album to playlist');
+   },
+   _handleAddQueue(album){
+      console.log('add album to queue');
    },
    render() {
       let albumsCards = null
       if (this.props.library && this.props.library.albums) {
          albumsCards = this.props.library.albums.map((album, index) => {
-            return <AlbumCard key={index} meta={album} onAlbumClick={this._handleAlbumCardClick}/>
+            return <AlbumCard
+               key={index}
+               meta={album}
+               onPlayClick={this._handlePlay}
+               onAddPlaylist={this._handleAddPlaylist}
+               onAddQueue={this._handleAddQueue}/>
          })
       }
-      console.log(this.props);
+
       return (
          <div className="view">
             <div className="scroll">

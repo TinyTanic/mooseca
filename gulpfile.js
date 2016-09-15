@@ -111,7 +111,7 @@ gulp.task('less', function() {
       .pipe(sourcemaps.init())
       .pipe(less())
       .pipe(sourcemaps.write('.'))
-      .pipe(gulp.dest('dist/static/css/'))
+      .pipe(gulp.dest('dist/css/'))
       .pipe(notify({
          title: 'Finished task [less]'
       }));
@@ -125,5 +125,5 @@ gulp.task('less-first', function() {
       .pipe(sourcemaps.init())
       .pipe(less())
       .pipe(sourcemaps.write('.'))
-      .pipe(gulp.dest('dist/static/css/'));
+      .pipe(gulp.dest('dist/css/'));
 });

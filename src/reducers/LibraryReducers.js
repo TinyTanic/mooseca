@@ -21,6 +21,18 @@ export function libraryReducer(state = initialState, action) {
          } else {
             return state
          }
+      case 'LIBRARY_GET':
+         console.log('--');
+         console.log(action);
+         if (!action.err) {
+            let ret = Object.assign({}, state, {
+               selectedAlbum: action.selectedAlbum
+            })
+            console.log(ret);
+            return ret
+         } else {
+            return state
+         }
       default:
          return state
    }

@@ -1,36 +1,112 @@
 .card {
-   background-color: blue;
-   border: 1px solid yellow;
-   cursor: pointer;
+   background-color: inherit;
+   border-radius: 2px;
    max-width: 12em;
 
    .container {
       padding: 1em;
 
+      .image-container:hover {
+         img {
+            -webkit-filter: blur(2px);
+         }
+         .play{
+            visibility: visible;
+            opacity: 1;
+         }
+
+         .buttons {
+            opacity: 1;
+            visibility: visible;
+
+         }
+      }
+
       .image-container {
+         display: flex;
+         position: relative;
+         cursor: pointer;
+
          img {
             width: 10em;
             height: 10em;
-            background-color: tomato;
+            border-radius: 2px;
+            transition: -webkit-filter 0.2s;
+         }
+
+         .play {
+            color: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            align-content: center;
+            justify-content: center;
+            width: 100%;
+            height: 8em;
+            text-align: center;
+            visibility: hidden;
+            transition: visibility 0.2s, opacity 0.2s linear;
+            opacity: 0;
+
+         }
+         .play:hover{
+            color: @yellow;
+         }
+
+         .buttons {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            align-items: flex-end;
+            flex-flow: row;
+            text-align: center;
+            color: white;
+            transition: visibility 0.2s, opacity 0.2s linear;
+            // padding: 4px;
+            .playlist {
+               border-radius: 4px;
+               flex-grow: 1;
+               min-height: 2em;
+               transition: color 0.2s;
+            }
+            .playlist:hover{
+               color: @blue;
+            }
+
+            .queue {
+               flex-grow: 1;
+               transition: color 0.2s;
+               min-height: 2em;
+            }
+            .queue:hover{
+               color: @red;
+            }
          }
       }
 
       .meta {
+         text-align: center;
+         color: @darkest-gray;
+
          .album {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            margin: 0.5em 0;
          }
 
          .artist {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            margin: 0;
          }
       }
    }
-}
-
-.card:last-child {
-   align-self: flex-start;
 }
