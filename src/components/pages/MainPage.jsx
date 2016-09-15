@@ -11,7 +11,7 @@ import * as SettingsActions from '../../actions/SettingsActions'
 import TopBar from './TopBar'
 import NavBar from './NavBar'
 import SideBar from './SideBar'
-import View from './View'
+import AlbumView from './AlbumView'
 
 const path = require('path')
 
@@ -60,7 +60,7 @@ var MainPage = React.createClass({
             <TopBar onPlayPause={this._handlePlayPause}/>
             <div className="bottom">
                <NavBar/>
-               <View library={this.props.library} onAlbumClick={this._handleAlbumClick}/> {/* <SideBar isCompressed={this.state.sidebar} album={this.state.selectedAlbum}/>  */}
+               <AlbumView library={this.props.library} onAlbumClick={this._handleAlbumClick}/> {/* <SideBar isCompressed={this.state.sidebar} album={this.state.selectedAlbum}/>  */}
                {sidebar}
             </div>
          </div>

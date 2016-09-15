@@ -1,20 +1,25 @@
 .searchpane {
    order: 3;
-    width: 33%;
+   width: 33%;
+
    .search-container {
       border-radius: 5px;
       background-color: @light-gray;
       padding: 3px;
       margin-left: 20%;
       margin-right: 13%;
+      display: flex;
 
-      i {}
+      i {
+         padding: 0.5em 0em 0.5em 0.65em;
+      }
 
       input[type=text] {
          border: none;
          outline: none;
          padding: 0.5em 0.65em;
          background: transparent;
+         flex: 1;
       }
    }
 }

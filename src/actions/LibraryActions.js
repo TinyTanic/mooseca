@@ -38,6 +38,11 @@ var walk = function(dir, done) {
                      //    artist: tags.artist,
                      //    album: tags.album,
                      // });
+                     let base64 = tags.v2.image ? Normalize.hexToBase64(tags.v2.image.data) : null
+                     if (base64) {
+                        base64 = 'data:'+tags.v2.image.mime+';base64,' + base64
+                     }
+                     // console.log(base64);
                      libraryDb.update({
                         path: file
                      }, {
@@ -45,6 +50,7 @@ var walk = function(dir, done) {
                         title: tags.title,
                         artist: tags.artist,
                         album: tags.album,
+                        // image: base64
                      }, {
                         upsert: true
                      }, function(err, numReplaced, upsert) {
@@ -70,6 +76,7 @@ const reindex = (cb) => {
 
    libraryDb.find({}, function(err, docs) {
       for (var i = 0; i < docs.length; i++) {
+         // console.log(docs[i]);
          artistKey = (docs[i].artist || 'Unknown').trim()
 
          if (!artists[artistKey]) {
@@ -82,7 +89,8 @@ const reindex = (cb) => {
             albums[albumKey] = {
                title: Normalize.toUnicode(albumKey),
                artist: Normalize.toUnicode(docs[i].artist),
-               year: Normalize.toUnicode(docs[i].year)
+               year: Normalize.toUnicode(docs[i].year),
+               // image: Normalize.toUnicode(docs[i].image)
             }
             if (docs[i].v2) {
                albums[albumKey].image = docs[i].v2.image

@@ -1,8 +1,20 @@
 .volumepane {
    order: 2;
 
-   .volume-container {
+   .spacer {
       margin-right: 4em;
       min-width: 9em;
+
+      .container {
+         display: flex;
+
+         color: @outline-gray;
+         .vdown {
+            margin-right: 0.5em;
+         }
+         .vup{
+            margin-left: 1em
+         }
+      }
    }
 }

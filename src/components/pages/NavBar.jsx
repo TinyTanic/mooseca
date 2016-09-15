@@ -18,6 +18,9 @@ var NavBar = React.createClass({
                      <li>
                         {'Album'}
                      </li>
+                     <li>
+                        {'Artisti'}
+                     </li>
                   </ul>
                </div>
 

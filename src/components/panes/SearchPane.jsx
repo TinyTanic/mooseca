@@ -5,6 +5,7 @@ var SearchPane = React.createClass({
       return (
          <div className="searchpane topbar-component left">
             <div className="search-container">
+               <i className="fa fa-search"></i>
                <input type="text"></input>
             </div>
          </div>

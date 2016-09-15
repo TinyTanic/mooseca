@@ -6,13 +6,20 @@ var InfoPane = React.createClass({
    render() {
       return <div className="infopane topbar-component left">
          <p>
-            {'una bella canzone'}</p>
+            {'una bella canzone'}
+         </p>
          <p>
-            {'un bravo artista - un bellissimo album'}</p>
+            {'un bravo artista - un bellissimo album'}
+         </p>
          {/* <ProgressBar /> */}
          <div className="progress">
-            <Slider />
-            <i></i>
+            <span>
+               {'0:00'}
+            </span>
+            <Slider/>
+            <span>
+               {'9:99'}
+            </span>
          </div>
       </div>
    }

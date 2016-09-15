@@ -1,7 +1,7 @@
 import React from 'react'
 import AlbumCard from '../elements/AlbumCard'
 
-var View = React.createClass({
+var AlbumView = React.createClass({
 
    _handlePlay(album) {
       // this.props.onAlbumClick(album)
@@ -25,9 +25,8 @@ var View = React.createClass({
                onAddQueue={this._handleAddQueue}/>
          })
       }
-
       return (
-         <div className="view">
+         <div className="albumview">
             <div className="scroll">
                {albumsCards}
                <div className="stretcher">
@@ -60,4 +59,4 @@ var View = React.createClass({
    }
 })
 
-export default View
+export default AlbumView
