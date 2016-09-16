@@ -34,6 +34,11 @@ var MainPage = React.createClass({
          console.log('scan');
          this.props.scanLibrary(nextProps.settings.libraryPath)
       }
+
+      if (!this.props.library.ready && nextProps.library.ready) {
+         this.props.getAlbums()
+         this.props.getArtists()
+      }
    },
    _handlePlayPause(control) {
       switch (control.button) {
@@ -85,7 +90,9 @@ function mapDispatchToProps(dispatch) {
       pauseMusic: () => MusicActions.pauseMusic(dispatch),
       getSetting: (key, defaultValue,) => SettingsActions.getSetting(key, defaultValue, dispatch),
       scanLibrary: (libraryPath) => LibraryActions.scanLibrary(libraryPath, dispatch),
-      getSongsByAlbum: album => LibraryActions.getSongsByAlbum(album, dispatch)
+      getSongsByAlbum: album => LibraryActions.getSongsByAlbum(album, dispatch),
+      getAlbums: () => LibraryActions.getAlbums(dispatch),
+      getArtists: () => LibraryActions.getArtists(dispatch),
    };
 }
 

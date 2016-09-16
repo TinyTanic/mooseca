@@ -5,7 +5,9 @@ var id3 = require('id3js');
 var Normalize = require('../libs/normalize').default
 
 import {
-   libraryDb
+   libraryDb,
+   albumsDb,
+   artistsDb
 } from '../db'
 
 var walk = function(dir, done) {
@@ -77,13 +79,15 @@ const reindex = (cb) => {
    libraryDb.find({}, function(err, docs) {
       for (var i = 0; i < docs.length; i++) {
          // console.log(docs[i]);
-         artistKey = (docs[i].artist || 'Unknown').trim()
+         artistKey = Normalize.toUnicode((docs[i].artist || 'Unknown').trim())
 
          if (!artists[artistKey]) {
-            artists[artistKey] = 1
+            artists[artistKey] = {
+               artist: Normalize.toUnicode(docs[i].artist),
+            }
          }
 
-         albumKey = (docs[i].album || 'Unknown').trim().normalize()
+         albumKey = Normalize.toUnicode((docs[i].album || 'Unknown').trim())
 
          if (!albums[albumKey]) {
             albums[albumKey] = {
@@ -103,9 +107,25 @@ const reindex = (cb) => {
       //  }
       const albumsList = []
       for (let key of Object.keys(albums)) {
-         albumsList.push(albums[key]);
+         if (albums[key]) {
+            albumsList.push(albums[key]);
+         }
       }
-      cb(Object.keys(artists), albumsList)
+
+      const artistsList = []
+      for (let key of Object.keys(artists)) {
+         if (artists[key]) {
+            artistsList.push(artists[key]);
+         }
+      }
+
+      albumsDb.insert(albumsList, (err, newDocs) => {
+         console.log(newDocs);
+         artistsDb.insert(artistsList, (err, newDocs) => {
+            console.log(newDocs);
+            cb()
+         })
+      })
    });
 }
 
@@ -118,11 +138,9 @@ export function scanLibrary(libraryPath, dispatch) {
    walk(libraryPath, (err) => {
       console.log(err);
       reindex((artists, albums) => {
-         console.log(artists, albums);
+         // console.log(artists, albums);
          dispatch({
             type: 'LIBRARY_SCAN',
-            artists: artists,
-            albums: albums,
             error: err || null
          })
       })
@@ -140,6 +158,26 @@ export function getSongsByAlbum(album, dispatch) {
       dispatch({
          type: 'LIBRARY_GET',
          selectedAlbum: findAlbum,
+         error: err || null
+      })
+   })
+}
+
+export function getAlbums(dispatch) {
+   albumsDb.find({}).sort({ title: 1 }).exec((err, albums) => {
+      dispatch({
+         type: 'LIBRAY_ALBUMS_GET',
+         albums: albums,
+         error: err || null
+      })
+   })
+}
+
+export function getArtists(dispatch) {
+   albumsDb.find({}).sort({ artist: 1 }).exec((err, artists) => {
+      dispatch({
+         type: 'LIBRAY_ARTISTS_GET',
+         artists: artists,
          error: err || null
       })
    })
