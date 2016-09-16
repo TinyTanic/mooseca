@@ -1,5 +1,6 @@
 const initialState = {
-   loaded: false
+   loaded: false,
+   ready: false
 }
 
 export function libraryReducer(state = initialState, action) {
@@ -17,6 +18,7 @@ export function libraryReducer(state = initialState, action) {
             return Object.assign({}, state, {
                artists: action.artists,
                albums: action.albums,
+               ready: true,
             })
          } else {
             return state
@@ -30,6 +32,22 @@ export function libraryReducer(state = initialState, action) {
             })
             console.log(ret);
             return ret
+         } else {
+            return state
+         }
+      case 'LIBRAY_ALBUMS_GET':
+         if (!action.err) {
+            return Object.assign({}, state, {
+               albums: action.albums,
+            })
+         } else {
+            return state
+         }
+      case 'LIBRAY_ARTISTS_GET':
+         if (!action.err) {
+            return Object.assign({}, state, {
+               artists: action.artists,
+            })
          } else {
             return state
          }
