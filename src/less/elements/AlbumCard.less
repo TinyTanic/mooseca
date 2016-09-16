@@ -7,10 +7,12 @@
       padding: 1em;
 
       .image-container:hover {
+
          img {
-            -webkit-filter: blur(2px);
+            -webkit-filter: blur(2px) brightness(0.5);
          }
-         .play{
+
+         .play {
             visibility: visible;
             opacity: 1;
          }
@@ -18,7 +20,6 @@
          .buttons {
             opacity: 1;
             visibility: visible;
-
          }
       }
 
@@ -50,9 +51,9 @@
             transition: visibility 0.2s, opacity 0.2s linear;
             transition: color 0.2s;
             opacity: 0;
-
          }
-         .play:hover{
+
+         .play:hover {
             color: @yellow;
          }
 
@@ -76,7 +77,8 @@
                min-height: 2em;
                transition: color 0.2s;
             }
-            .playlist:hover{
+
+            .playlist:hover {
                color: @blue;
             }
 
@@ -85,7 +87,8 @@
                transition: color 0.2s;
                min-height: 2em;
             }
-            .queue:hover{
+
+            .queue:hover {
                color: @red;
             }
          }

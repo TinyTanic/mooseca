@@ -1,7 +1,7 @@
 import React from 'react'
 import AlbumCard from '../elements/AlbumCard'
 
-var AlbumView = React.createClass({
+var AlbumsView = React.createClass({
 
    _handlePlay(album) {
       // this.props.onAlbumClick(album)
@@ -27,7 +27,6 @@ var AlbumView = React.createClass({
       }
       return (
          <div className="albumview">
-            <div className="scroll">
                {albumsCards}
                <div className="stretcher">
                   <div className="fuller"></div>
@@ -53,10 +52,9 @@ var AlbumView = React.createClass({
                <div className="stretcher">
                   <div className="fuller"></div>
                </div>
-            </div>
          </div>
       )
    }
 })
 
-export default AlbumView
+export default AlbumsView

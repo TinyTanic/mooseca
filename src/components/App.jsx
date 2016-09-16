@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-
-import MainPageApp from './pages/MainPage'
 import {Provider} from 'react-redux'
+
+import MainPageApp from './MainPage'
 
 import {store} from '../app'
 
@@ -13,7 +13,7 @@ export const App = React.createClass({
    render() {
       return (
          <Provider store={store}>
-            <MainPageApp />
+            <MainPageApp/>
          </Provider>
       )
    }

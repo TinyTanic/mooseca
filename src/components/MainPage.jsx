@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom';
 
 import {connect} from 'react-redux';
 
-import * as db from '../../db'
-import * as MusicActions from '../../actions/MusicActions'
-import * as LibraryActions from '../../actions/LibraryActions'
-import * as SettingsActions from '../../actions/SettingsActions'
+import * as db from '../db'
+import * as MusicActions from '../actions/MusicActions'
+import * as LibraryActions from '../actions/LibraryActions'
+import * as SettingsActions from '../actions/SettingsActions'
 
-import TopBar from './TopBar'
-import NavBar from './NavBar'
-import SideBar from './SideBar'
-import AlbumView from './AlbumView'
+import TopBar from './elements/TopBar'
+import NavBar from './elements/NavBar'
+import SideBar from './elements/SideBar'
+import View from './views/View'
 
 const path = require('path')
 
@@ -19,7 +19,7 @@ let pages = {}
 
 var MainPage = React.createClass({
    getInitialState() {
-      return {sidebar: false}
+      return {sidebar: false, currentView: 'album'}
    },
    componentDidMount() {
       this.props.getSetting('libraryPath', path.join(process.env[(process.platform == 'win32')
@@ -50,17 +50,23 @@ var MainPage = React.createClass({
    },
    _handleAlbumClick(album) {
    },
+   _handleChangeView(view){
+      this.setState({currentView: view})
+   },
    render() {
       let sidebar = null
       // if (this.state.showSidebar && this.props.selectedAlbum) {
       //    sidebar = (<SideBar album={this.props.selectedAlbum}/>)
       // }
+      console.log('current view: ' + this.state.currentView);
       return (
          <div className="mainpage">
             <TopBar onPlayPause={this._handlePlayPause}/>
             <div className="bottom">
-               <NavBar/>
-               <AlbumView library={this.props.library} onAlbumClick={this._handleAlbumClick}/> {/* <SideBar isCompressed={this.state.sidebar} album={this.state.selectedAlbum}/>  */}
+               <NavBar onChangeView={this._handleChangeView}/>
+               <View view={this.state.currentView}/>
+               {/* <AlbumView library={this.props.library} onAlbumClick={this._handleAlbumClick}/>  */}
+               {/* <SideBar isCompressed={this.state.sidebar} album={this.state.selectedAlbum}/>  */}
                {sidebar}
             </div>
          </div>
@@ -69,7 +75,6 @@ var MainPage = React.createClass({
 })
 
 function mapStateToProps(state) {
-   console.log(state);
    return {library: state.library, settings: state.settings, selectedAlbum: state.library.selectedAlbum}
 }
 
