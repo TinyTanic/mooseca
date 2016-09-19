@@ -10,8 +10,13 @@ var AlbumsView = React.createClass({
    _handleAddPlaylist(album){
    console.log('add album to playlist');
    },
-   _handleAddQueue(album){
-      console.log('add album to queue');
+   _handlePushToQueue(album){
+      console.log('pushed album to queue');
+   },
+   _handleReplaceQueue(album){
+
+      this.props.replaceQueueWithAlbum(album)
+      console.log('replaced album to queue');
    },
    render() {
       let albumsCards = null
@@ -22,7 +27,8 @@ var AlbumsView = React.createClass({
                meta={album}
                onPlayClick={this._handlePlay}
                onAddPlaylist={this._handleAddPlaylist}
-               onAddQueue={this._handleAddQueue}/>
+               onPushToQueue={this._handlePushToQueue}
+               onReplaceQueue={this._handleReplaceQueue}/>
          })
       }
       return (

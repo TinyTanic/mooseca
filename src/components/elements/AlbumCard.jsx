@@ -1,8 +1,8 @@
 import React from 'react'
 
 var AlbumCard = React.createClass({
-   _handleClickPlay() {
-      this.props.onPlayClick(this.props.meta)
+   _handleReplaceQueue() {
+      this.props.onReplaceQueue(this.props.meta)
    },
    _handleClickPlaylist() {
       this.props.onAddPlaylist(this.props.meta)
@@ -30,7 +30,7 @@ var AlbumCard = React.createClass({
             <div className="container">
                <div className="image-container">
                   <img src={image}></img>
-                  <div className="play" onClick={this._handleClickPlay}>
+                  <div className="play" onClick={this._handleReplaceQueue}>
                      <i className="fa fa-play-circle-o fa-3x"></i>
                   </div>
                   <div className="buttons">

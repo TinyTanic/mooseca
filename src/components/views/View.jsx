@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import AlbumsView from './AlbumsView'
 import ArtistsView from './ArtistsView'
 
+import * as QueueActions from '../../actions/QueueActions'
+
 let View = React.createClass({
    getInitialState() {
       return {}
@@ -13,10 +15,10 @@ let View = React.createClass({
       let view = null
       switch (this.props.view) {
          case 'album':
-            view = (<AlbumsView library={this.props.library}/>)
-            break
-         case 'artist':
-            view = (<ArtistsView library={this.props.library}/>)
+            view = (<AlbumsView {...this.props}/>)
+               break
+               case 'artist':
+                  view = (<ArtistsView {...this.props}/>)
             break
          default:
             view = (
@@ -39,7 +41,9 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-   return {};
+   return {
+      replaceQueueWithAlbum: (album) => {console.log('aaaaaaaaaa'); QueueActions.replaceWithAlbum(album, dispatch)},
+   };
 }
 
 View = connect(mapStateToProps, mapDispatchToProps)(View)

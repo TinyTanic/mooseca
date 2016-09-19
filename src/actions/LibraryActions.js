@@ -50,8 +50,8 @@ var walk = function(dir, done) {
                      }, {
                         path: file,
                         title: tags.title,
-                        artist: tags.artist,
-                        album: tags.album,
+                        artist: Normalize.toUnicode((tags.artist || 'Unknown').trim()),
+                        album: Normalize.toUnicode((tags.album || 'Unknown').trim()),
                         // image: base64
                      }, {
                         upsert: true
