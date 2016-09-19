@@ -19,7 +19,7 @@ let pages = {}
 
 var MainPage = React.createClass({
    getInitialState() {
-      return {sidebar: false, currentView: 'album'}
+      return {sidebar: false, currentView: 'music'}
    },
    componentDidMount() {
       this.props.getSetting('libraryPath', path.join(process.env[(process.platform == 'win32')
@@ -53,24 +53,35 @@ var MainPage = React.createClass({
             break;
       }
    },
-   _handleAlbumClick(album) {
-   },
-   _handleChangeView(view){
+   _handleAlbumClick(album) {},
+   _handleChangeView(view) {
       this.setState({currentView: view})
+   },
+   _handleClickQueue() {
+      this.setState({
+         sidebar: !this.state.sidebar
+      })
+      // console.log(this.state.sidebar);
+   },
+   _handleCloseSidebar() {
+      this.setState({sidebar: false})
+   },
+   _handleRemoveFromQueue(song) {
+      console.log('rimuovo dalla coda: ');
+      console.log(song);
    },
    render() {
       let sidebar = null
-      // if (this.state.showSidebar && this.props.selectedAlbum) {
-      //    sidebar = (<SideBar album={this.props.selectedAlbum}/>)
-      // }
+      if (this.state.sidebar) {
+         sidebar = (<SideBar queue={this.props.queue} onClose={this._handleCloseSidebar} onRemoveFromQueue={this._handleRemoveFromQueue}/>)
+      }
       console.log('current view: ' + this.state.currentView);
       return (
          <div className="mainpage">
-            <TopBar onPlayPause={this._handlePlayPause}/>
+            <TopBar onPlayPause={this._handlePlayPause} onClickQueue={this._handleClickQueue}/>
             <div className="bottom">
-               <NavBar onChangeView={this._handleChangeView}/>
-               <View view={this.state.currentView}/>
-               {/* <AlbumView library={this.props.library} onAlbumClick={this._handleAlbumClick}/>  */}
+               <NavBar onChangeView={this._handleChangeView} view={this.state.currentView}/>
+               <View view={this.state.currentView}/> {/* <AlbumView library={this.props.library} onAlbumClick={this._handleAlbumClick}/>  */}
                {/* <SideBar isCompressed={this.state.sidebar} album={this.state.selectedAlbum}/>  */}
                {sidebar}
             </div>
@@ -80,7 +91,7 @@ var MainPage = React.createClass({
 })
 
 function mapStateToProps(state) {
-   return {library: state.library, settings: state.settings, selectedAlbum: state.library.selectedAlbum}
+   return {library: state.library, settings: state.settings, selectedAlbum: state.library.selectedAlbum, queue: state.queue}
 }
 
 function mapDispatchToProps(dispatch) {
@@ -92,7 +103,7 @@ function mapDispatchToProps(dispatch) {
       scanLibrary: (libraryPath) => LibraryActions.scanLibrary(libraryPath, dispatch),
       getSongsByAlbum: album => LibraryActions.getSongsByAlbum(album, dispatch),
       getAlbums: () => LibraryActions.getAlbums(dispatch),
-      getArtists: () => LibraryActions.getArtists(dispatch),
+      getArtists: () => LibraryActions.getArtists(dispatch)
    };
 }
 

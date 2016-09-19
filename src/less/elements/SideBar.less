@@ -1,14 +1,41 @@
 .sidebar {
    order: 3;
-   min-width: 20em;
+   min-width: 320px;
+   max-width: 320px;
    padding-top: 105px;
+   position: relative;
 
    .container {
-      padding: 1em;
-      .songs{
-         ul > li {
-            color: red;
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .titlebar {
+         position: relative;
+         background-color: @gray;
+         padding: 1em;
+         font-weight: bold;
+
+         .close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 1em;
          }
+
+         .close:hover {
+            color: @light-blue;
+            cursor: pointer;
+         }
+
+         .close:active {
+            color: @blue;
+         }
+      }
+
+      .songs {
+         overflow-y: auto;
       }
    }
 }

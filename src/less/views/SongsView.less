@@ -1,0 +1,41 @@
+.queueview {
+   width: 100%;
+   display: table;
+
+   .container {
+      // margin-left: 1em;
+      // margin-right: 1em;
+      table {
+         width: 100%;
+         border-spacing: 0;
+
+         tr:nth-child(odd) {
+            background-color: @gray;
+         }
+
+         tr:nth-child(even) {
+            background-color: @light-gray;
+         }
+
+         tr {
+            th {
+               cursor: default;
+               text-align: left;
+               padding: 5px 5px 5px 1em;
+            }
+
+            td {
+               cursor: pointer;
+               padding: 5px;
+               padding-left: 1em;
+            }
+         }
+
+         tr:hover {
+            td {
+               background-color: @dark-gray;
+            }
+         }
+      }
+   }
+}

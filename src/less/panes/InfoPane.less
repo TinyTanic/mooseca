@@ -6,6 +6,7 @@
    text-align: center;
    order: 2;
    width: 33%;
+   position: relative;
 
    p {
       margin: 3px;
@@ -24,6 +25,29 @@
 
       .slider {
          flex: 1;
+      }
+   }
+   .queue{
+      position: absolute;
+      top: 0.5em;
+      right: 0.5em;
+      border-radius: 4px;
+      width: 2em;
+      height: 2em;
+      i {
+         margin-top: 0.5em;
+      }
+   }
+   .queue:hover{
+      // background-color: @gray;
+      cursor: pointer;
+      i{
+         color: @red;
+      }
+   }
+   .queue:active{
+      i{
+         color: @dark-red;
       }
    }
 }

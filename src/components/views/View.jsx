@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 import AlbumsView from './AlbumsView'
 import ArtistsView from './ArtistsView'
+import SongsView from './SongsView'
 
 import * as QueueActions from '../../actions/QueueActions'
 
@@ -16,9 +17,12 @@ let View = React.createClass({
       switch (this.props.view) {
          case 'album':
             view = (<AlbumsView {...this.props}/>)
-               break
-               case 'artist':
-                  view = (<ArtistsView {...this.props}/>)
+            break
+         case 'artist':
+            view = (<ArtistsView {...this.props}/>)
+            break
+         case 'music':
+            view = (<SongsView library={this.props.library}/>)
             break
          default:
             view = (
@@ -37,12 +41,14 @@ let View = React.createClass({
 })
 
 function mapStateToProps(state) {
-   return {library: state.library}
+   return {library: state.library, queue: state.queue}
 }
 
 function mapDispatchToProps(dispatch) {
    return {
-      replaceQueueWithAlbum: (album) => {console.log('aaaaaaaaaa'); QueueActions.replaceWithAlbum(album, dispatch)},
+      replaceQueueWithAlbum: (album) => {
+         QueueActions.replaceWithAlbum(album, dispatch)
+      }
    };
 }
 

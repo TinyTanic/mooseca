@@ -10,14 +10,17 @@ var TopBar = React.createClass({
    _handlePlayPauseButtonsClick(clicked) {
       this.props.onPlayPause(clicked)
    },
+   _handleClickQueue(){
+      this.props.onClickQueue()
+   },
    render() {
       return (
          <div className="topbar">
          <div className="group">
             <PlayPausePane onButtonClick={this._handlePlayPauseButtonsClick}/>
-            <VolumePane/> {/* {'ciao'} */}
+            <VolumePane/>
          </div>
-            <InfoPane/> {/* {'ciao'} */}
+            <InfoPane onClickQueue={this._handleClickQueue}/>
             <SearchPane/>
             <WindowButtonsPane/>
          </div>

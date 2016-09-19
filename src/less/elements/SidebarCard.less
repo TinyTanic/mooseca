@@ -1,0 +1,64 @@
+.sidebarcard {
+   position: relative;
+   display: flex;
+   flex-direction: row;
+   padding: 5px 0 5px 5px;
+   background-color: @light-gray;
+   transition: background-color 0.2s linear;
+
+   .img-container {
+      img {
+         width: 80px;
+         height: 80px;
+      }
+      display: inherit;
+   }
+
+   .meta {
+
+      .title {
+         overflow: hidden;
+         display: inline-block;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+         // display: block;
+         font-size: 2em;
+         padding: 0.25em 0.25em 0.25em 0.5em;
+      }
+
+      .album {
+         overflow: hidden;
+         display: inline-block;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+         // display: block;
+         margin-left: 1em;
+      }
+   }
+
+   .remove {
+      position: absolute;
+      top: 1em;
+      right: 1em;
+      opacity: 0;
+      transition: opacity 0.2s linear;
+   }
+}
+
+.sidebarcard:hover {
+   background-color: @dark-gray;
+   cursor: default;
+
+   .remove {
+      opacity: 1;
+      cursor: pointer;
+   }
+
+   .remove:hover {
+      color: @light-blue;
+   }
+
+   .remove:active {
+      color: @blue;
+   }
+}
