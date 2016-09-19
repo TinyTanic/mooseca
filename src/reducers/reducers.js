@@ -7,6 +7,9 @@ import {
 import {
    settingsReducer
 } from './SettingsReducers'
+import {
+   queueReducer
+} from './QueueReducers'
 
 import {
    combineReducers
@@ -15,5 +18,6 @@ import {
 export const reducers = combineReducers({
    music: musicReducer,
    library: libraryReducer,
+   queue: queueReducer,
    settings: settingsReducer,
 });
