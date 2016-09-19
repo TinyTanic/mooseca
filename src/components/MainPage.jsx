@@ -19,7 +19,7 @@ let pages = {}
 
 var MainPage = React.createClass({
    getInitialState() {
-      return {sidebar: false, currentView: 'artist'}
+      return {sidebar: false, currentView: 'album'}
    },
    componentDidMount() {
       this.props.getSetting('libraryPath', path.join(process.env[(process.platform == 'win32')
