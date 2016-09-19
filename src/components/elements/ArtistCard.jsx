@@ -1,6 +1,6 @@
 import React from 'react'
 
-var AlbumCard = React.createClass({
+var ArtistCard = React.createClass({
    _handleClickPlay() {
       this.props.onPlayClick(this.props.meta)
    },
@@ -20,7 +20,7 @@ var AlbumCard = React.createClass({
 
       let image = this.props.meta.image
          ? this.props.meta.image
-         : 'data/generic-album-1.png'
+         : 'data/generic-artist.png'
       return (
          <div className="card">
             <div className="container">
@@ -48,4 +48,4 @@ var AlbumCard = React.createClass({
    }
 })
 
-export default AlbumCard
+export default ArtistCard
