@@ -7,6 +7,7 @@
    order: 2;
    width: 33%;
    position: relative;
+   -webkit-app-region: no-drag;
 
    p {
       margin: 3px;
@@ -27,26 +28,31 @@
          flex: 1;
       }
    }
-   .queue{
+
+   .queue {
       position: absolute;
       top: 0.5em;
       right: 0.5em;
       border-radius: 4px;
       width: 2em;
       height: 2em;
+
       i {
          margin-top: 0.5em;
       }
    }
-   .queue:hover{
+
+   .queue:hover {
       // background-color: @gray;
       cursor: pointer;
-      i{
+
+      i {
          color: @light-blue;
       }
    }
-   .queue:active{
-      i{
+
+   .queue:active {
+      i {
          color: @blue;
       }
    }
