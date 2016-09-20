@@ -1,16 +1,31 @@
+import "babel-polyfill"
+
 import {
    reducers
 } from './reducers/reducers'
 
 import {
-   createStore
+   createStore, applyMiddleware
 } from 'redux'
+
+import sagaMiddleware from './saga'
+
+import ReduxThunk from 'redux-thunk'
+
+import { rootSaga } from './sagas/sagas'
+
+const _store = createStore(
+   reducers,
+   applyMiddleware(sagaMiddleware),
+   applyMiddleware(ReduxThunk),
+)
+
+sagaMiddleware.run(rootSaga)
+
 
 var App = require('./components/App').App
 
 import * as db from './db'
-
-const _store = createStore(reducers)
 
 _store.subscribe(() => {
    console.log('## STORE #####################');

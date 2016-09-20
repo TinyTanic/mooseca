@@ -2,7 +2,10 @@ import React from 'react'
 import AlbumCard from '../elements/AlbumCard'
 
 var AlbumsView = React.createClass({
-
+   componentDidMount() {
+      console.log(this.props);
+      this.props.getAlbums()
+   },
    _handlePlay(album) {
       // this.props.onAlbumClick(album)
       console.log('play album');
@@ -14,8 +17,7 @@ var AlbumsView = React.createClass({
       console.log('pushed album to queue');
    },
    _handleReplaceQueue(album){
-
-      this.props.replaceQueueWithAlbum(album)
+      console.log(this.props.replaceQueueWithAlbum(album))
       console.log('replaced album to queue');
    },
    render() {

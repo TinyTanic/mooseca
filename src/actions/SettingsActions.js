@@ -13,14 +13,16 @@ const readOrInitialize = (key, defaultValue, cb) => {
 }
 
 export function getSetting(key, defaultValue, dispatch) {
-   const settings = {}
-   readOrInitialize(key, defaultValue, (err, value) => {
-      if (err) throw err
-      settings[key] = value
-      dispatch({
-         type: 'SETTING_GET',
-         settings: settings,
-         error: err || null
+   return (dispatch, getState) => {
+      const settings = {}
+      readOrInitialize(key, defaultValue, (err, value) => {
+         if (err) throw err
+         settings[key] = value
+         dispatch({
+            type: 'SETTING_GET',
+            settings: settings,
+            error: err || null
+         })
       })
-   })
+   }
 }

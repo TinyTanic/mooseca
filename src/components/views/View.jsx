@@ -6,6 +6,7 @@ import ArtistsView from './ArtistsView'
 import SongsView from './SongsView'
 
 import * as QueueActions from '../../actions/QueueActions'
+import * as LibraryActions from '../../actions/LibraryActions'
 
 let View = React.createClass({
    getInitialState() {
@@ -46,9 +47,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
    return {
-      replaceQueueWithAlbum: (album) => {
-         QueueActions.replaceWithAlbum(album, dispatch)
-      }
+      replaceQueueWithAlbum: (album) => dispatch(QueueActions.replaceWithAlbum(album)),
+      getAlbums: () => dispatch(LibraryActions.getAlbums()),
+      getArtists: () => dispatch(LibraryActions.getArtists())
    };
 }
 

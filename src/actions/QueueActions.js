@@ -6,18 +6,22 @@ import {
 } from '../db'
 
 function push(queue, dispatch) {
-   dispatch({
-      type: 'QUEUE_PUSH',
-      queue: queue,
-      error: err || null
-   })
+   return (dispatch, getState) => {
+      dispatch({
+         type: 'QUEUE_PUSH',
+         queue: queue,
+         error: err || null
+      })
+   }
 }
 
 function replace(queue, dispatch) {
-   dispatch({
-      type: 'QUEUE_REPLACE',
-      queue: queue
-   })
+   return (dispatch, getState) => {
+      dispatch({
+         type: 'QUEUE_REPLACE',
+         queue: queue
+      })
+   }
 }
 
 export function pushAlbum(album, dispatch) {
@@ -34,8 +38,10 @@ export function replaceWithAlbum(album, dispatch) {
 
 
 export function changeMode(mode, dispatch) {
-   dispatch({
-      type: 'QUEUE_CHANGE_MODE',
-      mode: mode
-   })
+   return (dispatch, getState) => {
+      dispatch({
+         type: 'QUEUE_CHANGE_MODE',
+         mode: mode
+      })
+   }
 }
