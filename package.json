@@ -1,22 +1,22 @@
 {
-  "name": "music-player",
-  "version": "1.0.0",
+  "name": "mooseca",
+  "version": "0.0.1",
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
+    "start": "node player.js | electron",
     "build": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/TinyTanic/mooseca.git"
   },
   "keywords": [],
   "author": "Aguzzoli Luca, Barbetti Luca",
   "license": "GPL-3.0",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/TinyTanic/mooseca/issues"
   },
   "homepage": "",
   "dependencies": {
@@ -30,7 +30,9 @@
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-saga": "^0.11.1",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "socket.io": "^1.4.8",
+    "socket.io-client": "^1.4.8"
   },
   "devDependencies": {
     "babel": "^6.5.2",

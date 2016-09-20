@@ -3,36 +3,36 @@
    display: flex;
    flex-direction: row;
    padding: 5px 0 5px 5px;
-   background-color: @light-gray;
    transition: background-color 0.2s linear;
 
    .img-container {
       img {
-         width: 80px;
-         height: 80px;
+         border-radius: 2px;
+         width: 40px;
+         height: 40px;
       }
       display: inherit;
    }
 
    .meta {
-
       .title {
-         overflow: hidden;
-         display: inline-block;
-         text-overflow: ellipsis;
-         white-space: nowrap;
-         // display: block;
-         font-size: 2em;
-         padding: 0.25em 0.25em 0.25em 0.5em;
+         // overflow: hidden;
+         // display: inline-block;
+         // text-overflow: ellipsis;
+         // white-space: nowrap;
+         display: block;
+         // font-size: 1em;
+         padding: 0.25em 0.25em 0.25em 16px;
       }
 
       .album {
-         overflow: hidden;
-         display: inline-block;
-         text-overflow: ellipsis;
-         white-space: nowrap;
-         // display: block;
-         margin-left: 1em;
+         // overflow: hidden;
+         // display: inline-block;
+         // text-overflow: ellipsis;
+         // white-space: nowrap;
+         font-size: 0.75em;
+         display: block;
+         margin-left: 16px;
       }
    }
 
@@ -55,10 +55,10 @@
    }
 
    .remove:hover {
-      color: @light-blue;
+      color: @red;
    }
 
    .remove:active {
-      color: @blue;
+      color: @dark-red;
    }
 }

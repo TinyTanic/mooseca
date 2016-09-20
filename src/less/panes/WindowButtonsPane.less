@@ -1,10 +1,12 @@
 .window-buttons {
    float: right;
-   position: absolute;
+   position: fixed;
    top: 0;
    right: 0;
+   z-index: 99999;
 
    button {
+      -webkit-app-region: no-drag;
       width: 1.1em;
       height: 1.1em;
       border-radius: 50%;

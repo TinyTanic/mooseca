@@ -43,8 +43,8 @@ var MainPage = React.createClass({
   //     //    this.props.getArtists()
   //     // }
   //  },
-  _handlePlayPause(control) {
-    switch (control.button) {
+  _handlePlayPause(action) {
+    switch (action) {
       case 'play':
         this.props.playMusic();
         break;
@@ -81,7 +81,7 @@ var MainPage = React.createClass({
     console.log('current view: ' + this.state.currentView);
     return (
       <div className="mainpage">
-        <TopBar onPlayPause={this._handlePlayPause} onClickQueue={this._handleClickQueue}/>
+        <TopBar onPlayPause={this._handlePlayPause} onClickQueue={this._handleClickQueue} playbackState={this.props.playbackState}/>
         <div className="bottom">
           <NavBar onChangeView={this._handleChangeView} view={this.state.currentView}/>
           <View view={this.state.currentView}/> {/* <AlbumView library={this.props.library} onAlbumClick={this._handleAlbumClick}/>  */}
@@ -94,18 +94,18 @@ var MainPage = React.createClass({
 })
 
 function mapStateToProps(state) {
-  return {library: state.library, settings: state.settings, selectedAlbum: state.library.selectedAlbum, queue: state.queue}
+  return {library: state.library, settings: state.settings, selectedAlbum: state.library.selectedAlbum, queue: state.queue, playbackState: state.music.playbackState}
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    playMusic: () => dispatch(MusicActions.playMusic()),
+    playMusic: () => dispatch(MusicActions.playMusic({path: 'data/music.mp3'})),
     stopMusic: () => dispatch(MusicActions.stopMusic()),
     pauseMusic: () => dispatch(MusicActions.pauseMusic()),
     getSetting: (key, defaultValue,) => dispatch(SettingsActions.getSetting(key, defaultValue)),
     scanLibrary: (libraryPath) => dispatch(LibraryActions.scanLibrary(libraryPath)),
     loadLibrary: (libraryPath) => dispatch(LibraryActions.loadLibrary(libraryPath)),
-    getSongsByAlbum: album => LibraryActions.getSongsByAlbum(album),
+    getSongsByAlbum: (album) => LibraryActions.getSongsByAlbum(album),
     getAlbums: () => dispatch(LibraryActions.getAlbums()),
     getArtists: () => dispatch(LibraryActions.getArtists())
   };

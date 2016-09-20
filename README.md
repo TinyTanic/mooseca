@@ -1,2 +1,2 @@
-# music-player
-A beautiful music player
+# Mooseca
+A beautiful music player inspired by a moose

@@ -5,7 +5,7 @@ var SidebarCard = React.createClass({
       this.props.onRemove(this.props.song)
    },
    render() {
-      let songImage = this.props.song.image ? this.props.song.image : 'data/generic-album-1.png'
+      let songImage = this.props.song.image ? this.props.song.image : 'data/generic-album.png'
       let songTitle = this.props.song.title ? this.props.song.title : 'Unknown'
       let songAlbum = this.props.song.album ? this.props.song.album : 'Unknown'
 

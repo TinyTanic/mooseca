@@ -2,7 +2,8 @@
    order: 3;
    min-width: 320px;
    max-width: 320px;
-   padding-top: 105px;
+   padding-top: 85px;
+   margin-top: 20px;
    position: relative;
 
    .container {
@@ -10,6 +11,7 @@
       height: 100%;
       display: flex;
       flex-direction: column;
+      background-color: @light-gray;
 
       .titlebar {
          position: relative;
@@ -25,12 +27,12 @@
          }
 
          .close:hover {
-            color: @light-blue;
+            color: @red;
             cursor: pointer;
          }
 
          .close:active {
-            color: @blue;
+            color: @dark-red;
          }
       }
 
