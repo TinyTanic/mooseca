@@ -1,39 +1,47 @@
 .queueview {
    width: 100%;
    display: table;
-
+overflow-y: hidden;
    .container {
       // margin-left: 1em;
       // margin-right: 1em;
       table {
          width: 100%;
          border-spacing: 0;
+         table-layout: fixed;
 
-         tr:nth-child(odd) {
-            background-color: @gray;
-         }
-
-         tr:nth-child(even) {
-            background-color: @light-gray;
-         }
-
-         tr {
-            th {
-               cursor: default;
-               text-align: left;
-               padding: 5px 5px 5px 1em;
-            }
-
-            td {
-               cursor: pointer;
-               padding: 5px;
-               padding-left: 1em;
+         thead {
+            tr {
+               th {
+                  cursor: default;
+                  text-align: left;
+                  padding: 5px 5px 5px 1em;
+               }
             }
          }
 
-         tr:hover {
-            td {
-               background-color: @dark-gray;
+         tbody {
+            overflow: auto;
+            tr {
+               td {
+                  cursor: pointer;
+                  padding: 5px 5px 5px 1em;
+                  transition: background-color 0.2s;
+               }
+            }
+
+            tr:hover {
+               td {
+                  background-color: @dark-gray;
+               }
+            }
+
+            tr:nth-child(odd) {
+               background-color: @gray;
+            }
+
+            tr:nth-child(even) {
+               background-color: @light-gray;
             }
          }
       }

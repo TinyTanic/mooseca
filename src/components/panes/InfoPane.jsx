@@ -26,7 +26,7 @@ var InfoPane = React.createClass({
                </span>
             </div>
             <div className="queue" onClick={this._handleClickQueue}>
-               <i className="fa fa-heart"></i>
+               <i className="fa fa-list-alt"></i>
             </div>
          </div>
       )
