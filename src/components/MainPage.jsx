@@ -40,8 +40,8 @@ var MainPage = React.createClass({
          this.props.getArtists()
       }
    },
-   _handlePlayPause(control) {
-      switch (control.button) {
+   _handlePlayPause(action) {
+      switch (action) {
          case 'play':
             this.props.playMusic();
             break;
@@ -78,7 +78,7 @@ var MainPage = React.createClass({
       console.log('current view: ' + this.state.currentView);
       return (
          <div className="mainpage">
-            <TopBar onPlayPause={this._handlePlayPause} onClickQueue={this._handleClickQueue}/>
+            <TopBar onPlayPause={this._handlePlayPause} onClickQueue={this._handleClickQueue} playbackState={this.props.playbackState}/>
             <div className="bottom">
                <NavBar onChangeView={this._handleChangeView} view={this.state.currentView}/>
                <View view={this.state.currentView}/> {/* <AlbumView library={this.props.library} onAlbumClick={this._handleAlbumClick}/>  */}
@@ -91,12 +91,19 @@ var MainPage = React.createClass({
 })
 
 function mapStateToProps(state) {
-   return {library: state.library, settings: state.settings, selectedAlbum: state.library.selectedAlbum, queue: state.queue}
+   return {library: state.library,
+      settings: state.settings,
+      selectedAlbum: state.library.selectedAlbum,
+      queue: state.queue,
+      playbackState: state.music.playbackState
+   }
 }
 
 function mapDispatchToProps(dispatch) {
    return {
-      playMusic: () => MusicActions.playMusic(dispatch),
+      playMusic: () => MusicActions.playMusic({
+         path: 'data/music.mp3'
+      }, dispatch),
       stopMusic: () => MusicActions.stopMusic(dispatch),
       pauseMusic: () => MusicActions.pauseMusic(dispatch),
       getSetting: (key, defaultValue,) => SettingsActions.getSetting(key, defaultValue, dispatch),

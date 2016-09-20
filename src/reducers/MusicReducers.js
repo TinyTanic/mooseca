@@ -1,13 +1,14 @@
 const initialState = {
+   playbackState: 'stop'
 }
 
 export function musicReducer(state = initialState, action) {
    switch (action.type) {
-      case 'PLAY_MUSIC':
-      return {
-         state: action.state,
-         error: action.error
-      }
+      case 'MUSIC':
+         return {
+            playbackState: action.playbackState,
+            error: action.error
+         }
       default:
          return state
    }
