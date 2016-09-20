@@ -20,7 +20,7 @@ var AlbumCard = React.createClass({
 
       let image = this.props.meta.image
          ? this.props.meta.image
-         : 'data/generic-album-1.png'
+         : 'data/generic-album.png'
       return (
          <div className="card">
             <div className="container">
