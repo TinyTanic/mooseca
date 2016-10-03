@@ -8,7 +8,6 @@ import WindowButtonsPane from '../panes/WindowButtonsPane'
 
 var TopBar = React.createClass({
    _handlePlayPauseButtonsClick(clicked) {
-      // console.log(`clicked ${clicked}`);
       this.props.onPlayPause(clicked)
    },
    _handleClickQueue(){
@@ -23,9 +22,6 @@ var TopBar = React.createClass({
          </div>
             <InfoPane onClickQueue={this._handleClickQueue}/>
             <SearchPane/>
-            <audio>
-               <source src="data/music.mp3" type="audio/mpeg"></source>
-            </audio>
             <WindowButtonsPane/>
          </div>
       )

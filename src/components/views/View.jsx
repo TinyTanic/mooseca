@@ -14,6 +14,9 @@ let View = React.createClass({
    },
    render() {
       console.log(this.props.view);
+      console.log('---------------------------------------------------');
+      console.log(this.props.library);
+      console.log('---------------------------------------------------');
       let view = null
       switch (this.props.view) {
          case 'album':

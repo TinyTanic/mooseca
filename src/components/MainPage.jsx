@@ -64,7 +64,6 @@ var MainPage = React.createClass({
     this.setState({
       sidebar: !this.state.sidebar
     })
-    // console.log(this.state.sidebar);
   },
   _handleCloseSidebar() {
     this.setState({sidebar: false})
@@ -84,8 +83,7 @@ var MainPage = React.createClass({
         <TopBar onPlayPause={this._handlePlayPause} onClickQueue={this._handleClickQueue} playbackState={this.props.playbackState}/>
         <div className="bottom">
           <NavBar onChangeView={this._handleChangeView} view={this.state.currentView}/>
-          <View view={this.state.currentView}/> {/* <AlbumView library={this.props.library} onAlbumClick={this._handleAlbumClick}/>  */}
-          {/* <SideBar isCompressed={this.state.sidebar} album={this.state.selectedAlbum}/>  */}
+          <View view={this.state.currentView}/>
           {sidebar}
         </div>
       </div>
@@ -108,7 +106,7 @@ function mapDispatchToProps(dispatch) {
     getSongsByAlbum: (album) => LibraryActions.getSongsByAlbum(album),
     getAlbums: () => dispatch(LibraryActions.getAlbums()),
     getArtists: () => dispatch(LibraryActions.getArtists())
-  };
+  }
 }
 
 var MainPageApp = connect(mapStateToProps, mapDispatchToProps)(MainPage)
