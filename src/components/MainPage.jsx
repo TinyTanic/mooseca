@@ -21,28 +21,29 @@ var MainPage = React.createClass({
   getInitialState() {
     return {sidebar: false, currentView: 'music'}
   },
-  //  componentDidMount() {
-  //     // this.props.getSetting('libraryPath', path.join(process.env[(process.platform == 'win32')
-  //     //       ? 'USERPROFILE'
-  //     //       : 'HOME'], 'Musica'))
-  //  },
-  //  componentWillUpdate(nextProps) {
-  //     console.log(this.props);
-  //     console.log(nextProps);
-  //     // if (!this.props.settings.libraryPath && nextProps.settings.libraryPath) {
-  //     //    // console.log(this.props.settings);
-  //     //    // console.log('scan');
-  //     //    // this.props.scanLibrary(nextProps.settings.libraryPath)
-  //     //
-  //     //    console.log('load');
-  //     //    this.props.loadLibrary(nextProps.settings.libraryPath)
-  //     // }
-  //
-  //     // if (!this.props.library.ready && nextProps.library.ready) {
-  //     //    this.props.getAlbums()
-  //     //    this.props.getArtists()
-  //     // }
-  //  },
+  componentDidMount() {
+    // this.props.getSetting('libraryPath', path.join(process.env[(process.platform == 'win32')
+    //       ? 'USERPROFILE'
+    //       : 'HOME'], 'Musica'))
+    this.props.scanLibrary('/home/luca/Musica/')
+    this.props.loadLibrary('/home/luca/Musica/')
+  },
+  componentWillUpdate(nextProps) {
+    console.log(this.props);
+    console.log(nextProps);
+    // if (!this.props.settings.libraryPath && nextProps.settings.libraryPath) {
+    //    // console.log(this.props.settings);
+    //    // console.log('scan');
+    //    // this.props.scanLibrary(nextProps.settings.libraryPath)
+    //
+    //    console.log('load');
+    // }
+
+    // if (!this.props.library.ready && nextProps.library.ready) {
+    //    this.props.getAlbums()
+    //    this.props.getArtists()
+    // }
+  },
   _handlePlayPause(action) {
     switch (action) {
       case 'play':
@@ -83,8 +84,7 @@ var MainPage = React.createClass({
         <TopBar onPlayPause={this._handlePlayPause} onClickQueue={this._handleClickQueue} playbackState={this.props.playbackState}/>
         <div className="bottom">
           <NavBar onChangeView={this._handleChangeView} view={this.state.currentView}/>
-          <View view={this.state.currentView}/>
-          {sidebar}
+          <View view={this.state.currentView}/> {sidebar}
         </div>
       </div>
     )

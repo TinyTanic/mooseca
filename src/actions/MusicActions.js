@@ -1,4 +1,3 @@
-let Player = require('player');
 var socket = require('socket.io-client')('http://localhost:9876');
 
 export function playMusic(song) {
@@ -20,7 +19,7 @@ export function playMusic(song) {
 
 export function stopMusic() {
   return (dispatch, getState) => {
-    // player.stop()
+    
     dispatch({
       type: 'MUSIC',
       playbackState: 'stop',

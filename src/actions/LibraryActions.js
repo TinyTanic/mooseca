@@ -1,31 +1,18 @@
-import {
-  libraryDb,
-  albumsDb,
-  artistsDb
-} from '../db'
+import {libraryDb, albumsDb, artistsDb} from '../db'
 
-import { walk, reindex } from '../lib/library'
-
+import {walk, reindex} from '../lib/library'
 
 export function scanLibrary(libraryPath, dispatch) {
   return (dispatch, getState) => {
     console.log('scanLibrary');
     console.log(libraryPath);
 
-    return walk(libraryPath)
-      .then(reindex())
-      .then(() => {
-        dispatch({
-          type: 'LIBRARY_SCAN',
-          error: null
-        })
-      })
-      .catch((err) => {
-        dispatch({
-          type: 'LIBRARY_SCAN',
-          error: err
-        })
-      })
+    return walk(libraryPath).then(
+      reindex()).then(() => {
+      dispatch({type: 'LIBRARY_SCAN', error: null})
+    }).catch((err) => {
+      dispatch({type: 'LIBRARY_SCAN', error: err})
+    })
   }
 }
 
@@ -34,19 +21,11 @@ export function loadLibrary(libraryPath, dispatch) {
     console.log('scanLibrary');
     console.log(libraryPath);
 
-    return reindex()
-      .then(() => {
-        dispatch({
-          type: 'LIBRARY_SCAN',
-          error: null
-        })
-      })
-      .catch((err) => {
-        dispatch({
-          type: 'LIBRARY_SCAN',
-          error: err
-        })
-      })
+    return reindex().then(() => {
+      dispatch({type: 'LIBRARY_SCAN', error: null})
+    }).catch((err) => {
+      dispatch({type: 'LIBRARY_SCAN', error: err})
+    })
   }
 }
 
@@ -68,9 +47,7 @@ export function getSongsByAlbum(album, dispatch) {
 
 export function getAlbums() {
   return (dispatch, getState) => {
-    albumsDb.find({}).sort({
-      title: 1
-    }).exec((err, albums) => {
+    albumsDb.find({}).sort({title: 1}).exec((err, albums) => {
       dispatch({
         type: 'LIBRAY_ALBUMS_GET',
         albums: albums,
@@ -82,9 +59,7 @@ export function getAlbums() {
 
 export function getArtists(dispatch) {
   return (dispatch, getState) => {
-    albumsDb.find({}).sort({
-      artist: 1
-    }).exec((err, artists) => {
+    albumsDb.find({}).sort({artist: 1}).exec((err, artists) => {
       dispatch({
         type: 'LIBRAY_ARTISTS_GET',
         artists: artists,

@@ -1,8 +1,8 @@
 let Player = require('player')
-  //
-  // let player = new Player('data/music.mp3')
-  //
-  // player.play()
+//
+// let player = new Player('data/music.mp3')
+//
+// player.play()
 var app = require('http').createServer(handler)
 var io = require('socket.io')(app);
 var fs = require('fs');
@@ -23,23 +23,21 @@ io.on('connection', function(socket) {
       player.pause()
       console.log(`Resume ${data.song}`);
     }
-    socket.emit('resp', {
-      data: 'ok'
-    })
+    socket.emit('resp', {data: 'ok'})
   });
   socket.on('pause', () => {
     if (player) {
       console.log(`Pause current song`);
       player.pause()
     }
-    socket.emit('resp', {
-      data: 'ok'
-    })
+    socket.emit('resp', {data: 'ok'})
   })
   socket.on('disconnect', () => {
-    player.stop()
-    player = null
+    if (player) {
+      player.stop()
+      player = null
+    }
     console.log('Moosica Player disconnected');
   })
 });
-console.log('Mooseca Player');
+console.log('Starting Mooseca Player daemon...');

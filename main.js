@@ -14,6 +14,7 @@ function createWindow() {
    mainWindow = new BrowserWindow({
       width: 1200,
       height: 600,
+      icon: __dirname + '/data/icon.png',
       frame: false,
       // fullscreen: true
    })

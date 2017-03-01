@@ -1,64 +1,56 @@
 .sidebarcard {
-   position: relative;
-   display: flex;
-   flex-direction: row;
-   padding: 5px 0 5px 5px;
-   transition: background-color 0.2s linear;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  padding: 5px 0 5px 5px;
+  transition: background-color 0.2s linear;
+  // cursor: pointer;
 
-   .img-container {
-      img {
-         border-radius: 2px;
-         width: 40px;
-         height: 40px;
-      }
-      display: inherit;
-   }
+  .img-container {
+    img {
+      border-radius: 2px;
+      width: 40px;
+      height: 40px;
+    }
+    display: inherit;
+  }
 
-   .meta {
-      .title {
-         // overflow: hidden;
-         // display: inline-block;
-         // text-overflow: ellipsis;
-         // white-space: nowrap;
-         display: block;
-         // font-size: 1em;
-         padding: 0.25em 0.25em 0.25em 16px;
-      }
+  .meta {
+    .title {
+      display: block;
+      padding: 0.25em 0.25em 0.25em 16px;
+    }
 
-      .album {
-         // overflow: hidden;
-         // display: inline-block;
-         // text-overflow: ellipsis;
-         // white-space: nowrap;
-         font-size: 0.75em;
-         display: block;
-         margin-left: 16px;
-      }
-   }
+    .album {
+      font-size: 0.75em;
+      display: block;
+      margin-left: 16px;
+    }
+  }
 
-   .remove {
-      position: absolute;
-      top: 1em;
-      right: 1em;
-      opacity: 0;
-      transition: opacity 0.2s linear;
-   }
+  .remove {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    opacity: 0;
+    transition: opacity 0.2s linear;
+  }
 }
 
 .sidebarcard:hover {
-   background-color: @dark-gray;
-   cursor: default;
+  background-color: @dark-gray;
+  cursor: pointer;
 
-   .remove {
-      opacity: 1;
-      cursor: pointer;
-   }
+  .remove {
+    opacity: 1;
+    cursor: pointer;
+  }
 
-   .remove:hover {
-      color: @red;
-   }
+  .remove:hover {
+    color: @red;
+  }
 
-   .remove:active {
-      color: @dark-red;
-   }
+  .remove:active {
+    color: @dark-red;
+  }
 }
