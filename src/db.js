@@ -2,11 +2,11 @@ const Datastore = require('nedb');
 import series from 'async/series';
 
 export const libraryDb = new Datastore({
-   filename: __dirname + '/../data/library.json'
+   filename: 'library.json'
 });
 
 export const settingsDb = new Datastore({
-   filename: __dirname + '/../data/settings.json'
+   filename: 'settings.json'
 });
 
 export const albumsDb = new Datastore({
