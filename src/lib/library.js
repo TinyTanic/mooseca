@@ -77,6 +77,7 @@ export const walk = function(dir) {
 };
 
 export const reindex = () => {
+  console.log('reindex');
   return new Promise((resolve, reject) => {
     const albums = []
     const artists = []
@@ -126,11 +127,14 @@ export const reindex = () => {
         }
       }
       console.log('create lib');
-      albumsDb.insert(albumsList, (err, newDocs) => {
-        console.log(newDocs);
-        artistsDb.insert(artistsList, (err, newDocs) => {
-          console.log(newDocs);
-          resolve(albumsList, artistsList)
+
+      albumsDb.remove({}, { multi: true }, () => {
+        artistsDb.remove({}, { multi: true }, () => {
+          albumsDb.insert(albumsList, (err, newDocs) => {
+            artistsDb.insert(artistsList, (err, newDocs) => {
+              resolve(albumsList, artistsList)
+            })
+          })
         })
       })
     });

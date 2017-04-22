@@ -29,13 +29,27 @@ export function loadLibrary(libraryPath, dispatch) {
   }
 }
 
+export function getSongs() {
+  return (dispatch, getState) => {
+    let find = { }
+
+    libraryDb.find(find, (err, songs) => {
+      dispatch({
+        type: 'LIBRAY_SONGS_GET',
+        songs: songs,
+        error: err || null
+      })
+    })
+  }
+}
+
 export function getSongsByAlbum(album, dispatch) {
   let findAlbum = {
     album: album
   }
 
+  console.log(songs);
   libraryDb.find(findAlbum, (err, songs) => {
-    console.log(songs);
     findAlbum.songs = songs
     dispatch({
       type: 'LIBRARY_GET',

@@ -2,10 +2,13 @@ import React from 'react'
 import ArtistCard from '../elements/ArtistCard'
 
 var AlbumsView = React.createClass({
-
+  componentDidMount() {
+    console.log(this.props);
+    this.props.getArtists()
+  },
   render() {
     let artistsCards = []
-    let fullers = null;
+    let fillers = null;
     if (this.props.library && this.props.library.artists) {
       artistsCards = this.props.library.artists.map((artist, index) => {
         return <ArtistCard key={index} meta={artist} onPlayClick={this._handlePlay} onAddPlaylist={this._handleAddPlaylist} onAddQueue={this._handleAddQueue}/>
@@ -19,7 +22,7 @@ var AlbumsView = React.createClass({
         </div>
       )
     } else {
-      fullers = (
+      fillers = (
         <div>
           <div className="stretcher">
             <div className="fuller"></div>
@@ -51,7 +54,7 @@ var AlbumsView = React.createClass({
     return (
       <div className="artistview">
         {artistsCards}
-        {fullers}
+        {fillers}
       </div>
     )
   }
