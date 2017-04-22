@@ -15,13 +15,13 @@ pipeline {
               sh 'node --version || true'
               sh 'npm --version || true'
               
-              echo 'INFO: Building backend'
-              sh 'rm -rf dansuma-backend && pwd && ls -la'
-              sh 'git clone https://github.com/kuruho/dansuma-backend.git'
-              sh 'cd dansuma-backend && pwd && ls -la && npm --verbose install'
+              echo 'TODO: Building backend'
+              // sh 'rm -rf mooseca-backend && pwd && ls -la'
+              // sh 'git clone https://github.com/kuruho/dansuma-backend.git'
+              // sh 'cd mooseca-backend && pwd && ls -la && npm --verbose install'
 
               // echo 'INFO: Starting backend'
-              // sh 'cd dansuma-backend && pwd && ls -la && NODE_ENV=production PORT=7001 VOLUMIO_WS=ws://192.168.40.10 node app.js'
+              // sh 'cd mooseca-backend && pwd && ls -la && NODE_ENV=production PORT=7001 VOLUMIO_WS=ws://192.168.40.10 node app.js'
             }
           },
           "Build-frontend": {
@@ -31,12 +31,12 @@ pipeline {
               sh 'npm --version || true'
               
               echo 'INFO: Building frontend'
-              sh 'rm -rf dansuma-frontend && pwd && ls -la'
-              sh 'git clone https://github.com/kuruho/dansuma-frontend'
-              sh 'cd dansuma-frontend && pwd && ls -la && npm --verbose install'
+              sh 'rm -rf mooseca-frontend && pwd && ls -la'
+              sh 'git clone https://github.com/TinyTanic/mooseca'
+              sh 'cd mooseca-frontend && pwd && ls -la && npm --verbose install'
 
               // echo 'INFO: Starting frontend'
-              // sh 'cd dansuma-frontend && pwd && ls -la && PORT=7000 WEBSOCKET_URL=http://localhost:7001 npm start'              
+              // sh 'cd mooseca-frontend && pwd && ls -la && PORT=7000 WEBSOCKET_URL=http://localhost:7001 npm start'              
             }
           }
         )
