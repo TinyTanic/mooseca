@@ -33,4 +33,4 @@ Beautiful and easy to install.
 
 [Here](docs/BUILD-WITH-EASY-JENKINS.md) the jenkins documentation
 
-[logo]: data/svg/icon.svg
+[logo]: https://raw.githubusercontent.com/TinyTanic/mooseca/master/data/svg/icon.svg
