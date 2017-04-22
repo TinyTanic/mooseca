@@ -14,7 +14,7 @@ pipeline {
               echo 'INFO: Testing buildenv for backend'
               sh 'node --version || true'
               sh 'npm --version || true'
-              
+
               echo 'TODO: Building backend'
               // sh 'rm -rf mooseca-backend && pwd && ls -la'
               // sh 'git clone https://github.com/kuruho/dansuma-backend.git'
@@ -29,14 +29,14 @@ pipeline {
               echo 'INFO: Testing buildenv for frontend'
               sh 'node --version || true'
               sh 'npm --version || true'
-              
+
               echo 'INFO: Building frontend'
               sh 'rm -rf mooseca-frontend && pwd && ls -la'
               sh 'git clone https://github.com/TinyTanic/mooseca mooseca-frontend'
               sh 'cd mooseca-frontend && pwd && ls -la && npm --verbose install'
 
               // echo 'INFO: Starting frontend'
-              // sh 'cd mooseca-frontend && pwd && ls -la && PORT=7000 WEBSOCKET_URL=http://localhost:7001 npm start'              
+              // sh 'cd mooseca-frontend && pwd && ls -la && PORT=7000 WEBSOCKET_URL=http://localhost:7001 npm start'
             }
           }
         )
@@ -46,7 +46,7 @@ pipeline {
       steps {
         echo 'TODO: Testing on CI'
       }
-    }    
+    }
     stage('Deploy-to-staging') {
       steps {
         echo 'TODO: Deploy to staging'
@@ -85,12 +85,12 @@ ls -la
         // input message: "Does http://localhost:8888/staging/ look good?"
         input message: "Does everything look good on your staging system?"
       }
-    }    
+    }
     stage('Deploy-to-production') {
       steps {
         echo 'TODO: Deploy to production'
         echo 'Hello, world!'
-        
+
         sh '''#!/bin/bash
 
 # Remote login to kuruho-udooquad via rpi3gm23,chipgm32
@@ -100,6 +100,6 @@ ls -la
 # EOF
 '''
       }
-    }    
+    }
   }
 }
