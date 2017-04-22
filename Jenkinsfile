@@ -32,7 +32,7 @@ pipeline {
               
               echo 'INFO: Building frontend'
               sh 'rm -rf mooseca-frontend && pwd && ls -la'
-              sh 'git clone https://github.com/TinyTanic/mooseca'
+              sh 'git clone https://github.com/TinyTanic/mooseca mooseca-frontend'
               sh 'cd mooseca-frontend && pwd && ls -la && npm --verbose install'
 
               // echo 'INFO: Starting frontend'
