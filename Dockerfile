@@ -5,12 +5,12 @@ RUN apt-get update && \
   apt-get -y install openssh-client curl git
 
 # Install mooseca binary dependencies
-RUN sudo apt-get -y install libmp3lame-dev
+RUN apt-get -y install libmp3lame-dev
 
 # Install NodeJS and NPM
 # See https://github.com/nodesource/distributions
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-RUN sudo apt-get install -y nodejs
+RUN apt-get install -y nodejs
 
 # # Install NVM (Node Version Manager
 # # See https://www.liquidweb.com/kb/how-to-install-nvm-node-version-manager-for-node-js-on-ubuntu-14-04-lts/
