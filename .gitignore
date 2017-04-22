@@ -42,3 +42,10 @@ dist
 # DB folder
 data/*.json
 data/*.mp3
+
+# desktop distribution
+desktop/dist
+desktop/build
+
+# yarn
+yarn.lock

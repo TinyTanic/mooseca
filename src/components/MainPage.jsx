@@ -76,7 +76,13 @@ var MainPage = React.createClass({
   render() {
     let sidebar = null
     if (this.state.sidebar) {
-      sidebar = (<SideBar queue={this.props.queue} onClose={this._handleCloseSidebar} onRemoveFromQueue={this._handleRemoveFromQueue}/>)
+      sidebar = (
+          <SideBar
+              queue={this.props.queue}
+              onClose={this._handleCloseSidebar}
+              onRemoveFromQueue={this._handleRemoveFromQueue}
+          />
+      )
     }
     console.log('current view: ' + this.state.currentView);
     return (

@@ -1,4 +1,9 @@
 import "babel-polyfill"
+import React from 'react'
+import ReactDOM from 'react-dom'
+import {Provider} from 'react-redux'
+
+import MainPageApp from './components/MainPage'
 
 import {
    reducers
@@ -14,7 +19,7 @@ import ReduxThunk from 'redux-thunk'
 
 import { rootSaga } from './sagas/sagas'
 
-const _store = createStore(
+const store = createStore(
    reducers,
    applyMiddleware(sagaMiddleware),
    applyMiddleware(ReduxThunk),
@@ -23,14 +28,25 @@ const _store = createStore(
 sagaMiddleware.run(rootSaga)
 
 
-var App = require('./components/App').App
-
 import * as db from './db'
 
-_store.subscribe(() => {
+store.subscribe(() => {
    console.log('## STORE #####################');
-   console.log(_store.getState());
+   console.log(store.getState());
    console.log('##############################\n');
+})
+
+const App = React.createClass({
+   getInitialState() {
+      return {}
+   },
+   render() {
+      return (
+         <Provider store={store}>
+            <MainPageApp/>
+         </Provider>
+      )
+   }
 })
 
 console.log(db);
@@ -45,5 +61,3 @@ db.load((err) => {
       ReactDOM.render(React.createElement(App, {}), window.document.getElementById('app'));
    }
 })
-
-export const store  = _store
