@@ -4,6 +4,9 @@ RUN apt-get update && \
   apt-get -y dist-upgrade && \
   apt-get -y install openssh-client curl git
 
+# Install mooseca binary dependencies
+RUN sudo apt-get -y install libmp3lame-dev
+
 # Install NodeJS and NPM
 # See https://github.com/nodesource/distributions
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
