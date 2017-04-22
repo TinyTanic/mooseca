@@ -9,7 +9,7 @@ RUN apt-get -y install libmp3lame-dev
 
 # Install NodeJS and NPM
 # See https://github.com/nodesource/distributions
-RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get install -y nodejs
 
 # # Install NVM (Node Version Manager
