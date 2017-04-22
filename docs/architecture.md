@@ -4,10 +4,22 @@ Based on
 
 * NodeJS
 * Electron
+* React & Redux
 
-Backend: 
+Target Architecture
 
-* player
+* ARM
+* X86/x64
+
+Target Platform
+
+* Windows
+* Linux
+* Mac
+
+Backend:
+
+* player js (switching to Howler.js)
 
 Dependencies:
 
