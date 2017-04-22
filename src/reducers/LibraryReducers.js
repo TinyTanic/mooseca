@@ -41,6 +41,14 @@ export function libraryReducer(state = initialState, action) {
          } else {
             return state
          }
+      case 'LIBRAY_SONGS_GET':
+         if (!action.err) {
+            return Object.assign({}, state, {
+               songs: action.songs,
+            })
+         } else {
+            return state
+         }
       case 'LIBRAY_ALBUMS_GET':
          if (!action.err) {
             return Object.assign({}, state, {

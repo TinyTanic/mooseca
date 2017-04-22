@@ -26,7 +26,7 @@ let View = React.createClass({
             view = (<ArtistsView {...this.props}/>)
             break
          case 'music':
-            view = (<SongsView library={this.props.library}/>)
+            view = (<SongsView {...this.props}/>)
             break
          default:
             view = (
@@ -52,6 +52,7 @@ function mapDispatchToProps(dispatch) {
    return {
       replaceQueueWithAlbum: (album) => dispatch(QueueActions.replaceWithAlbum(album)),
       getAlbums: () => dispatch(LibraryActions.getAlbums()),
+      getSongs: () => dispatch(LibraryActions.getSongs()),
       getArtists: () => dispatch(LibraryActions.getArtists())
    };
 }
