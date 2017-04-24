@@ -1,6 +1,6 @@
 # Mooseca
 
-![logo][logo]
+![lMooseca logo](https://cdn.rawgit.com/TinyTanic/mooseca/ba1e2613/data/svg/icon.svg)
 
 A beautiful music player inspired by a moose
 
