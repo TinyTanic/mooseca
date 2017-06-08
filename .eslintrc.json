@@ -1,0 +1,48 @@
+{
+  "extends": "react-app",
+  "parser": "babel-eslint",
+  "env": {
+    "node": true,
+    "es6": true,
+    "browser": true
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "no-param-reassign": ["error", {
+      "props": false
+    }],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline"
+      }
+    ],
+    "semi": ["error", "never"],
+    "no-console": "off",
+    "no-unused-vars": "warn",
+    "arrow-parens": "off",
+    "generator-star-spacing": ["error", "after"],
+    "radix": "warn",
+    "no-underscore-dangle": ["error", {
+      "allowAfterThis": true
+    }],
+    "react/forbid-prop-types": ["error", {
+      "forbid": ["off"]
+    }],
+    "no-throw-literal": "warn",
+    "no-underscore-dangle": "off",
+
+    "react/prop-types": 0
+  }
+}
