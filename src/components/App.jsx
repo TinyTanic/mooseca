@@ -1,20 +1,48 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import {Provider} from 'react-redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-import MainPageApp from './MainPage'
+import TopBar from './partials/TopBar'
+import SideBar from './partials/SideBar'
+import NavBar from './partials/NavBar'
 
-import {store} from '../app'
+import router from '../router/index'
 
-export const App = React.createClass({
-   getInitialState() {
-      return {}
-   },
-   render() {
-      return (
-         <Provider store={store}>
-            <MainPageApp/>
-         </Provider>
-      )
-   }
+class App extends Component {
+  componentDidMount() {
+    // this.props.dispatch(changePage(pages.SEARCH))
+    // this.props.dispatch(printerConnect())
+    // this.props.dispatch(checkWifi())
+  }
+
+  render() {
+    const view = router(this.props).view
+    const viewProps = {
+      ...router(this.props).props,
+      dispatch: this.props.dispatch,
+    }
+    return (
+      <div className="App">
+        <TopBar dispatch={this.props.dispatch} />
+        <div className="bottom">
+          <NavBar
+            onChangeView={this._handleChangeView}
+            view={this.props.view}
+          />
+          <div className="view">
+            {React.createElement(view, viewProps)}
+          </div>
+          <SideBar />
+
+        </div>
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = state => state
+
+const mapDispatchToProps = dispatch => ({
+  dispatch: dispatch,
 })
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
