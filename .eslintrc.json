@@ -28,21 +28,21 @@
         "exports": "always-multiline"
       }
     ],
-    "semi": ["error", "never"],
-    "no-console": "off",
-    "no-unused-vars": "warn",
-    "arrow-parens": "off",
-    "generator-star-spacing": ["error", "after"],
-    "radix": "warn",
-    "no-underscore-dangle": ["error", {
-      "allowAfterThis": true
+    "semi"                    : ["error", "never"],
+    "no-console"              : "off",
+    "no-unused-vars"          : "warn",
+    "arrow-parens"            : "off",
+    "generator-star-spacing"  : ["error", "after"],
+    "radix"                   : "warn",
+    "no-underscore-dangle"    : ["error", {
+      "allowAfterThis"          : true
     }],
-    "react/forbid-prop-types": ["error", {
-      "forbid": ["off"]
+    "react/forbid-prop-types" : ["error", {
+      "forbid"                  : ["off"]
     }],
-    "no-throw-literal": "warn",
-    "no-underscore-dangle": "off",
-
-    "react/prop-types": 0
+    "no-throw-literal"        : "warn",
+    "no-underscore-dangle"    : "off",
+    "quotes"                  : ["error", "single"],
+    "react/prop-types"        : 0
   }
 }
