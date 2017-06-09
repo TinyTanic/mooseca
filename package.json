@@ -11,6 +11,7 @@
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "electron": "^1.6.8",
+    "notify-send": "^0.1.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.5",

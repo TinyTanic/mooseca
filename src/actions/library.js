@@ -1,10 +1,13 @@
 import { sagalize } from '../utils/sagalizator'
 import { SEARCH_MUSIC } from '../constants/actions'
 
-export const search = () => ({
+export const search = dir => ({
   type: sagalize(SEARCH_MUSIC),
+  payload: { dir },
 })
 
-export const searchSaga = () => ({
+export const searchSaga = (dir, list, error) => ({
   type: SEARCH_MUSIC,
+  payload: { list },
+  error,
 })

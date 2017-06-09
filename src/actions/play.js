@@ -8,7 +8,7 @@ export const play = song => ({
 })
 
 export const playSaga = (song, play, error) => ({
-  type: sagalize(PLAY),
+  type: PLAY,
   payload: { song },
   error,
 })

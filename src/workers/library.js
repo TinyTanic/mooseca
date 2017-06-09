@@ -5,7 +5,7 @@ const Normalize = require('../lib/normalize').default
 
 import { libraryDb, albumsDb, artistsDb } from '../db'
 
-export const searchMusic = (dir, filelist) => {
+export const search = (dir, filelist) => {
   const files = fs.readdirSync(dir)
   let list = filelist || []
   files.forEach(file => {

@@ -31,7 +31,7 @@ class App extends Component {
           <div className="view">
             {React.createElement(view, viewProps)}
           </div>
-          <SideBar />
+          <SideBar dispatch={this.props.dispatch} />
 
         </div>
       </div>
