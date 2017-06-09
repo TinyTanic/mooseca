@@ -17,11 +17,11 @@ function createWindow() {
     frame: false,
     // fullscreen: true
   });
-  BrowserWindow.addDevToolsExtension(
-    `${require(
-      'os'
-    ).homedir()}/.config/chromium/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd/2.15.1_0`
-  );
+  //BrowserWindow.addDevToolsExtension(
+  //  `${require(
+  //    'os'
+  //  ).homedir()}/.config/chromium/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd/2.15.1_0`
+  //);
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${__dirname}/public/index.html`);
 
