@@ -42,3 +42,5 @@ dist
 # DB folder
 data/*.json
 data/*.mp3
+
+config/*

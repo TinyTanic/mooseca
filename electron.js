@@ -3,7 +3,7 @@ const electron = require('electron')
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
-
+const REDUX_DEV_TOOLS = require('./config/config').REDUX_DEV_TOOLS
 const fs = require('fs')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -18,13 +18,11 @@ function createWindow() {
     frame: false,
     // fullscreen: true
   })
-  let reduxDevTools = `${require(
-    'os'
-  ).homedir()}/.config/chromium/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd/2.15.1_0`
-  if (fs.existsSync(reduxDevTools)) {
-    BrowserWindow.addDevToolsExtension(reduxDevTools)
+  if (fs.existsSync(REDUX_DEV_TOOLS)) {
+    BrowserWindow.addDevToolsExtension(REDUX_DEV_TOOLS)
   } else {
     console.warn('Redux DevTools not found!')
+    console.log(REDUX_DEV_TOOLS)
   }
 
   // and load the index.html of the app.
