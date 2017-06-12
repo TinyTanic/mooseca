@@ -43,4 +43,4 @@ dist
 data/*.json
 data/*.mp3
 
-config/
+config/config.js
