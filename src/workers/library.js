@@ -19,67 +19,58 @@ export const search = (dir, filelist) => {
 }
 
 export const walk = dir => {
-  return new Promise(function(resolve, reject) {
-    var results = []
-    fs.readdir(dir, function(err, list) {
-      if (err) return reject(err)
-      var pending = list.length
-      if (!pending) return resolve(null, results)
-      list.forEach(function(file) {
-        file = path.resolve(dir, file)
-        fs.stat(file, function(err, stat) {
-          if (stat && stat.isDirectory()) {
-            walk(file, function(err, res) {
-              results = results.concat(res)
-              if (!--pending) {
-                resolve(null, results)
-              }
-            })
-          } else {
-            if (file.indexOf('.mp3') > 0)
-              id3(
-                {
-                  file: file,
-                  type: id3.OPEN_LOCAL,
-                },
-                function(err, tags) {
-                  let base64 = tags.v2.image
-                    ? Normalize.hexToBase64(tags.v2.image.data)
-                    : null
-                  if (base64) {
-                    base64 = 'data:' + tags.v2.image.mime + ';base64,' + base64
-                  }
-                  libraryDb.update(
-                    {
-                      path: file,
-                    },
-                    {
-                      path: file,
-                      title: tags.title,
-                      artist: Normalize.toUnicode(
-                        (tags.artist || 'Unknown').trim()
-                      ),
-                      album: Normalize.toUnicode(
-                        (tags.album || 'Unknown').trim()
-                      ),
-                      // image: base64
-                    },
-                    {
-                      upsert: true,
-                    },
-                    function(err, numReplaced, upsert) {
-                      // numReplaced = 1, upsert = { _id: 'id5', planet: 'Pluton', inhabited: false }
-                      // A new document { _id: 'id5', planet: 'Pluton', inhabited: false } has been added to the collection
-                    }
-                  )
-                }
-              )
-            results.push(file)
-            if (!--pending) resolve(null, results)
-          }
-        })
-      })
+  return new Promise(resolve => {
+    return resolve(search(dir))
+  }).then(list => {
+    let promises = []
+    list.forEach(element => {
+      let file = path.resolve(dir, element)
+      if (file.indexOf('.mp3') > 0) {
+        promises.push(_walk(file))
+      }
     })
+    return Promise.all(promises)
+  })
+}
+
+const _walk = file => {
+  return new Promise((resolve, reject) => {
+    id3(
+      {
+        file: file,
+        type: id3.OPEN_LOCAL,
+      },
+      (err, tags) => {
+        if (err) {
+          return reject(err)
+        }
+        let base64 = tags.v2.image
+          ? Normalize.hexToBase64(tags.v2.image.data)
+          : null
+        if (base64) {
+          base64 = 'data:' + tags.v2.image.mime + ';base64,' + base64
+        }
+        let metaTag = {
+          path: file,
+          title: tags.title,
+          artist: Normalize.toUnicode((tags.artist || 'Unknown').trim()),
+          album: Normalize.toUnicode((tags.album || 'Unknown').trim()),
+          // image: base64
+        }
+
+        libraryDb.update(
+          {
+            path: file,
+          },
+          metaTag,
+          {
+            upsert: true,
+          }
+        )
+
+        resolve(metaTag)
+      }
+    )
   })
 }
 

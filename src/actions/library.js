@@ -6,8 +6,8 @@ export const search = dir => ({
   payload: { dir },
 })
 
-export const searchSaga = (list, error) => ({
+export const searchSaga = (songs, error) => ({
   type: SEARCH_MUSIC,
-  payload: list,
+  payload: songs,
   error,
 })

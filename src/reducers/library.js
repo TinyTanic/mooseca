@@ -1,5 +1,3 @@
-import { IDLE } from '../constants/playStates'
-
 import { SEARCH_MUSIC } from '../constants/actions'
 
 const defaultState = []
