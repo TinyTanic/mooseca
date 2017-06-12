@@ -11,12 +11,11 @@ export function* searchMusic() {
     try {
       let dir = action.payload.dir || `${require('os').homedir()}/Music`
       console.log('search music on ' + dir)
-      const { response, error } = yield call(search, dir)
-      console.log(response, error)
-      if (error) throw error
-      yield put(searchSaga(action.payload.dir, response))
+      const response = yield call(search, dir)
+      //if (error) throw error
+      yield put(searchSaga(response))
     } catch (error) {
-      yield put(searchSaga(null, null, error))
+      yield put(searchSaga(null, error))
     }
   })
 }

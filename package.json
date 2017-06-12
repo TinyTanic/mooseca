@@ -8,9 +8,12 @@
     "start": "electron ."
   },
   "dependencies": {
+    "async": "^2.4.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "electron": "^1.6.8",
+    "id3js": "^1.1.3",
+    "nedb": "^1.8.0",
     "notify-send": "^0.1.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",

@@ -3,8 +3,6 @@ import SidebarCard from './SidebarCard'
 import { search } from '../../actions/library'
 
 class SideBar extends Component {
-  dispatch = this.props.dispatch
-
   _handleCloseClick() {
     console.error('TODO')
   }
@@ -14,24 +12,30 @@ class SideBar extends Component {
   }
 
   componentDidMount() {
-    this.dispatch(search())
+    this.props.dispatch(search())
   }
 
   render() {
-    let { songs = [] } = this.props
+    //let { songs = [] } = this.props.songs
+    let songs = this.props.songs || []
+    console.log(songs)
     if (songs.length === 0) {
       return <span>{'La coda di riproduzione è vuota'}</span>
     }
-    songs = [
-      {
-        title: 'Canzone estate',
-        album: 'albume',
-      },
-      {
-        title: 'Canzone',
-        album: 'albume',
-      },
-    ]
+    /*TODO: aggiustamento manuale dell' array */
+    songs = songs.map(song => {
+      return { title: song, album: song, image: '' }
+    })
+    // songs = [
+    //   {
+    //     title: 'Canzone estate',
+    //     album: 'albume',
+    //   },
+    //   {
+    //     title: 'Canzone',
+    //     album: 'albume',
+    //   },
+    // ]
     /*TODO: x Agu
     Index usato per risolvere questo tipo di errore: verificare se come soluzione è conveniente
     Warning: flattenChildren(...): Encountered two children with the same key. Child keys must be unique; when two children share a key, only the first child will be used.

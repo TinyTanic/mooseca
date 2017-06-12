@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const id3 = require('id3js')
-const Normalize = require('../lib/normalize').default
+const Normalize = require('../utils/normalize').default
 
 import { libraryDb, albumsDb, artistsDb } from '../db'
 
@@ -10,7 +10,7 @@ export const search = (dir, filelist) => {
   let list = filelist || []
   files.forEach(file => {
     if (fs.statSync(dir + '/' + file).isDirectory()) {
-      list = searchMusic(dir + '/' + file, list)
+      list = search(dir + '/' + file, list)
     } else {
       list.push(file)
     }
