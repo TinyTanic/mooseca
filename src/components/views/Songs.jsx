@@ -1,28 +1,28 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-var SongsView = React.createClass({
+class SongsView extends Component {
   componentDidMount() {
     console.log(this.props);
     this.props.getSongs()
-  },
+  }
   _handlePlay(album) {
     // this.props.onAlbumClick(album)
     console.log('play album');
-  },
+  }
   _handleAddPlaylist(album) {
     console.log('add album to playlist');
-  },
+  }
   _handlePushToQueue(album) {
     console.log('pushed album to queue');
-  },
+  }
   _handleReplaceQueue(album) {
     console.log(this.props.replaceQueueWithAlbum(album))
     console.log('replaced album to queue');
-  },
+  }
   _handleClickSong(song) {
     // console.log(event, song);
     this.props.onPlaySong(song  )
-  },
+  }
    render() {
      let songsEntries = []
      let fillers = null;
@@ -71,6 +71,6 @@ var SongsView = React.createClass({
       )
     }
    }
-})
+}
 
 export default SongsView
