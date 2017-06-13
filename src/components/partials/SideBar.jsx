@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import SidebarCard from './SidebarCard'
-import { search, load } from '../../actions/library'
-import { LOAD_MUSIC } from '../../constants/playStates'
+import { search } from '../../actions/library'
 
 class SideBar extends Component {
   _handleCloseClick() {
@@ -16,7 +15,7 @@ class SideBar extends Component {
     this.props.dispatch(search())
   }
   render() {
-    const songs = this.props.songs
+    const songs = this.props.songs || []
     if (songs.length === 0) {
       return <span>{'La coda di riproduzione è vuota'}</span>
     }
