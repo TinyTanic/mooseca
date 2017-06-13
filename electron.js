@@ -22,7 +22,6 @@ function createWindow() {
     BrowserWindow.addDevToolsExtension(REDUX_DEV_TOOLS)
   } else {
     console.warn('Redux DevTools not found!')
-    console.log(REDUX_DEV_TOOLS)
   }
 
   // and load the index.html of the app.
