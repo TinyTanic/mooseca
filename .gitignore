@@ -44,3 +44,5 @@ data/*.json
 data/*.mp3
 
 #config/config.js
+
+prove.js
