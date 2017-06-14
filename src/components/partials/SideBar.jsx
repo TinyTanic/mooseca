@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import SidebarCard from './SidebarCard'
-import { search, load } from '../../actions/library'
-import { LOAD_MUSIC } from '../../constants/playStates'
+import { search } from '../../actions/library'
 
 class SideBar extends Component {
   _handleCloseClick() {
@@ -13,23 +12,25 @@ class SideBar extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(search())
+    // this.props.dispatch(search())
   }
   render() {
     const songs = this.props.songs
+    let sidebarContent = null
     if (songs.length === 0) {
-      return <span>{'La coda di riproduzione è vuota'}</span>
+      sidebarContent = <span>{'La coda di riproduzione è vuota'}</span>
+    } else {
+      let index = 0
+      sidebarContent = songs.map(song => {
+        return (
+          <SidebarCard
+            key={index++}
+            song={song}
+            onRemove={this._handleRemoveCard}
+          />
+        )
+      })
     }
-    let index = 0
-    const sidebarCardList = songs.map(song => {
-      return (
-        <SidebarCard
-          key={index++}
-          song={song}
-          onRemove={this._handleRemoveCard}
-        />
-      )
-    })
     return (
       <div className="sidebar">
         <div className="container">
@@ -40,7 +41,7 @@ class SideBar extends Component {
             </div>
           </div>
           <div className="songs">
-            {sidebarCardList}
+            {sidebarContent}
           </div>
 
         </div>
