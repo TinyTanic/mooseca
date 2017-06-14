@@ -6,7 +6,13 @@ import VolumePane from './VolumePane'
 import SearchPane from './SearchPane'
 import WindowButtonsPane from './WindowButtonsPane'
 
+import { hideSideBar, showSideBar } from '../../actions/general'
+
 class TopBar extends Component {
+  _handleClickQueue = () => {
+    if (this.props.sidebar) this.props.dispatch(hideSideBar())
+    else this.props.dispatch(showSideBar())
+  }
   render() {
     return (
       <div className="topbar">

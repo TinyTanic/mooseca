@@ -20,9 +20,13 @@ class App extends Component {
       ...router(this.props).props,
       dispatch: this.props.dispatch,
     }
+
+    const sidebar = this.props.sidebar
+      ? <SideBar songs={this.props.library} dispatch={this.props.dispatch} />
+      : null
     return (
       <div className="App">
-        <TopBar dispatch={this.props.dispatch} />
+        <TopBar dispatch={this.props.dispatch} sidebar={this.props.sidebar} />
         <div className="bottom">
           <NavBar
             onChangeView={this._handleChangeView}
@@ -31,7 +35,7 @@ class App extends Component {
           <div className="view">
             {React.createElement(view, viewProps)}
           </div>
-          <SideBar songs={this.props.library} dispatch={this.props.dispatch} />
+          {sidebar}
         </div>
       </div>
     )
@@ -41,7 +45,7 @@ class App extends Component {
 const mapStateToProps = state => state
 
 const mapDispatchToProps = dispatch => ({
-  dispatch: dispatch,
+  dispatch,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

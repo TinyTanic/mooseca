@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import SidebarCard from './SidebarCard'
 import { search } from '../../actions/library'
+import { hideSideBar } from '../../actions/general'
 
 class SideBar extends Component {
-  _handleCloseClick() {
-    console.error('TODO')
+  _handleCloseClick = () => {
+    this.props.dispatch(hideSideBar())
   }
 
-  _handleRemoveCard() {
+  _handleRemoveCard = () => {
     console.error('TODO')
   }
 
