@@ -1,11 +1,11 @@
-import { views } from '../constants'
+import { LIST } from '../constants/views'
 
 import songs from './songs'
 
 import Null from '../components/views/Null'
 import Songs from '../components/views/Songs'
 const routingTable = {
-  [views.LIST]: { view: Songs, props: songs },
+  [LIST]: { view: Songs, props: songs },
 }
 
 const router = state =>
