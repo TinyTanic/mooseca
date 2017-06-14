@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import SidebarCard from './SidebarCard'
-import { search } from '../../actions/library'
+// import { search } from '../../actions/library'
 import { hideSideBar } from '../../actions/general'
 
 class SideBar extends Component {

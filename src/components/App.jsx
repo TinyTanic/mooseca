@@ -7,11 +7,17 @@ import NavBar from './partials/NavBar'
 
 import router from '../router/index'
 
+import { changeView } from '../actions/general'
+
 class App extends Component {
   componentDidMount() {
     // this.props.dispatch(changePage(pages.SEARCH))
     // this.props.dispatch(printerConnect())
     // this.props.dispatch(checkWifi())
+  }
+
+  _handleChangeView = view => {
+    this.props.dispatch(changeView(view))
   }
 
   render() {
@@ -30,7 +36,7 @@ class App extends Component {
         <div className="bottom">
           <NavBar
             onChangeView={this._handleChangeView}
-            view={this.props.view}
+            currentView={this.props.view}
           />
           <div className="view">
             {React.createElement(view, viewProps)}
