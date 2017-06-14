@@ -2,7 +2,7 @@ import React from 'react'
 
 import Slider from './Slider'
 
-const InfoPane = () => (
+const InfoPane = ({ onClickQueue }) =>
   <div className="infopane topbar-component left">
     <p>
       {'una bella canzone'}
@@ -20,10 +20,9 @@ const InfoPane = () => (
         {'9:99'}
       </span>
     </div>
-    <div className="queue">
+    <div className="queue" onClick={onClickQueue}>
       <i className="fa fa-list-alt" />
     </div>
   </div>
-)
 
 export default InfoPane

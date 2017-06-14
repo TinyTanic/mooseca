@@ -7,11 +7,17 @@ import NavBar from './partials/NavBar'
 
 import router from '../router/index'
 
+import { changeView } from '../actions/general'
+
 class App extends Component {
   componentDidMount() {
     // this.props.dispatch(changePage(pages.SEARCH))
     // this.props.dispatch(printerConnect())
     // this.props.dispatch(checkWifi())
+  }
+
+  _handleChangeView = view => {
+    this.props.dispatch(changeView(view))
   }
 
   render() {
@@ -20,18 +26,22 @@ class App extends Component {
       ...router(this.props).props,
       dispatch: this.props.dispatch,
     }
+
+    const sidebar = this.props.sidebar
+      ? <SideBar songs={this.props.library} dispatch={this.props.dispatch} />
+      : null
     return (
       <div className="App">
-        <TopBar dispatch={this.props.dispatch} />
+        <TopBar dispatch={this.props.dispatch} sidebar={this.props.sidebar} />
         <div className="bottom">
           <NavBar
             onChangeView={this._handleChangeView}
-            view={this.props.view}
+            currentView={this.props.view}
           />
           <div className="view">
             {React.createElement(view, viewProps)}
           </div>
-          <SideBar songs={this.props.library} dispatch={this.props.dispatch} />
+          {sidebar}
         </div>
       </div>
     )
@@ -41,7 +51,7 @@ class App extends Component {
 const mapStateToProps = state => state
 
 const mapDispatchToProps = dispatch => ({
-  dispatch: dispatch,
+  dispatch,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

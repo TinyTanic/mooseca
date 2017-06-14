@@ -8,25 +8,27 @@
 @import './views/View.less';
 
 html {
-   height: 100%;
+  height: 100%;
 
-   body {
-      margin: 0;
+  body {
+    margin: 0;
+    height: inherit;
+    font-family: sans-serif;
+
+    #app {
       height: inherit;
-      font-family: sans-serif;
 
-      #app {
-         height: inherit;
+      .App {
+        height: inherit;
+        display: flex;
 
-         .mainpage {
-            height: inherit;
-            display: flex;
-            .bottom{
-               width: 100%;
-               align-items: stretch;
-               display: flex;
-            }
-         }
+        .bottom {
+          width: 100%;
+          align-items: stretch;
+          display: flex;
+          padding-top: 105px;
+        }
       }
-   }
+    }
+  }
 }
