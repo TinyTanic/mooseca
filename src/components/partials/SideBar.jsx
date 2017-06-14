@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import SidebarCard from './SidebarCard'
-// import { search } from '../../actions/library'
+//import { search, load } from '../../actions/library'
 import { hideSideBar } from '../../actions/general'
 
 class SideBar extends Component {
@@ -14,6 +14,7 @@ class SideBar extends Component {
 
   componentDidMount() {
     // this.props.dispatch(search())
+    //this.props.dispatch(load())
   }
   render() {
     const songs = this.props.songs
