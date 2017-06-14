@@ -1,8 +1,8 @@
 import { playSong } from './play'
-import { searchMusic } from './library'
+import { searchMusic, loadMusic } from './library'
 
 function* rootSagas() {
-  yield [playSong(), searchMusic()]
+  yield [playSong(), searchMusic(), loadMusic()]
 }
 
 export default rootSagas

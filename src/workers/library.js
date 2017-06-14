@@ -3,7 +3,7 @@ const path = require('path')
 const id3 = require('id3js')
 const Normalize = require('../utils/normalize').default
 
-import { libraryDb, albumsDb, artistsDb } from '../db'
+import { libraryDb, albumsDb, artistsDb, load as loadDB } from '../db'
 
 export const search = (dir, filelist) => {
   const files = fs.readdirSync(dir)
@@ -20,6 +20,7 @@ export const search = (dir, filelist) => {
 
 export const walk = dir => {
   return new Promise(resolve => {
+    loadDB()
     return resolve(search(dir))
   }).then(list => {
     let promises = []
@@ -71,6 +72,17 @@ const _walk = file => {
         resolve(metaTag)
       }
     )
+  })
+}
+
+export const load = where => {
+  console.log('load')
+  return new Promise((resolve, reject) => {
+    //loadDB()
+    libraryDb.find(where, function(err, docs) {
+      if (err) reject(err)
+      resolve(docs)
+    })
   })
 }
 
