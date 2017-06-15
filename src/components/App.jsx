@@ -38,7 +38,9 @@ class App extends Component {
             currentView={this.props.view}
           />
           <div className="view">
-            {React.createElement(view, viewProps)}
+            <div className="scroll">
+              {React.createElement(view, viewProps)}
+            </div>
           </div>
           {sidebar}
         </div>

@@ -16,6 +16,9 @@ function createWindow() {
     height: 600,
     icon: __dirname + '/data/icon.png',
     frame: false,
+    webPreferences: {
+      experimentalFeatures: true,
+    },
     // fullscreen: true
   })
   if (fs.existsSync(REDUX_DEV_TOOLS)) {
