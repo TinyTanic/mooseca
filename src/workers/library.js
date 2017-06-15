@@ -12,7 +12,7 @@ export const search = (dir, filelist) => {
     if (fs.statSync(dir + '/' + file).isDirectory()) {
       list = search(dir + '/' + file, list)
     } else {
-      list.push(file)
+      list.push(dir + '/' + file)
     }
   })
   return list
@@ -23,9 +23,10 @@ export const walk = dir => {
     loadDB()
     return resolve(search(dir))
   }).then(list => {
+    console.log(list)
     let promises = []
     list.forEach(element => {
-      let file = path.resolve(dir, element)
+      let file = path.resolve(element)
       if (file.indexOf('.mp3') > 0) {
         promises.push(_walk(file))
       }
