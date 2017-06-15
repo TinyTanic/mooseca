@@ -3,10 +3,12 @@ import series from 'async/series'
 
 export const libraryDb = new Datastore({
   filename: __dirname + '/../data/library.json',
+  autoload: true,
 })
 
 export const settingsDb = new Datastore({
   filename: __dirname + '/../data/settings.json',
+  autoload: true,
 })
 
 export const albumsDb = new Datastore({
@@ -22,25 +24,25 @@ export const load = cb => {
     [
       function(callback) {
         settingsDb.loadDatabase(function(err) {
-          console.log(settingsDb)
+          // console.log(settingsDb)
           callback(err)
         })
       },
       function(callback) {
         libraryDb.loadDatabase(function(err) {
-          console.log(libraryDb)
+          // console.log(libraryDb)
           callback(err)
         })
       },
       function(callback) {
         albumsDb.loadDatabase(function(err) {
-          console.log(albumsDb)
+          // console.log(albumsDb)
           callback(err)
         })
       },
       function(callback) {
         artistsDb.loadDatabase(function(err) {
-          console.log(artistsDb)
+          // console.log(artistsDb)
           callback(err)
         })
       },

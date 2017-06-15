@@ -8,7 +8,7 @@ const InfoPane = ({ onClickQueue }) =>
       {'una bella canzone'}
     </p>
     <p>
-      {'un bravo artista - un bellissimo album'}
+      {'artista - album'}
     </p>
     {/* <ProgressBar /> */}
     <div className="progress">

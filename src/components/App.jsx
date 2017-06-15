@@ -7,13 +7,12 @@ import NavBar from './partials/NavBar'
 
 import router from '../router/index'
 
+import { search } from '../actions/library'
 import { changeView } from '../actions/general'
 
 class App extends Component {
   componentDidMount() {
-    // this.props.dispatch(changePage(pages.SEARCH))
-    // this.props.dispatch(printerConnect())
-    // this.props.dispatch(checkWifi())
+    this.props.dispatch(search())
   }
 
   _handleChangeView = view => {

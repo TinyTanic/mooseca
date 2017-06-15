@@ -25,3 +25,6 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('app')
 )
+
+import { load } from './db'
+load(() => {})

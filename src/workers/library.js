@@ -5,14 +5,15 @@ const Normalize = require('../utils/normalize').default
 
 import { libraryDb, albumsDb, artistsDb, load as loadDB } from '../db'
 
-export const search = (dir, filelist) => {
+export const search = dir => {
   const files = fs.readdirSync(dir)
-  let list = filelist || []
+  let list = []
   files.forEach(file => {
-    if (fs.statSync(dir + '/' + file).isDirectory()) {
-      list = search(dir + '/' + file, list)
+    const completePath = `${dir}/${file}`
+    if (fs.statSync(completePath).isDirectory()) {
+      list = list.concat(search(completePath))
     } else {
-      list.push(dir + '/' + file)
+      if (file.match(/\.mp3$/g)) list.push(completePath)
     }
   })
   return list
@@ -23,7 +24,7 @@ export const walk = dir => {
     loadDB()
     return resolve(search(dir))
   }).then(list => {
-    console.log(list)
+    // console.log(list)
     let promises = []
     list.forEach(element => {
       let file = path.resolve(element)
