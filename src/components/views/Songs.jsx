@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 
+import { play } from '../../actions/play'
+
 class Songs extends Component {
+  _handleClickSong = song => {
+    this.props.dispatch(play(song))
+  }
+
   render() {
     let songsEntries = []
     if (this.props.library && this.props.library) {

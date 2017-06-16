@@ -1,4 +1,4 @@
-import { PLAY } from '../constants/actions'
+import { PLAY, PAUSE } from '../constants/actions'
 
 import { sagalize } from '../utils/sagalizator'
 
@@ -7,8 +7,18 @@ export const play = song => ({
   payload: { song },
 })
 
-export const playSaga = (song, play, error) => ({
+export const playSaga = (song, player, error) => ({
   type: PLAY,
-  payload: { song },
+  payload: { song, player },
+  error,
+})
+
+export const pause = () => ({
+  type: sagalize(PAUSE),
+})
+
+export const pauseSaga = (player, error) => ({
+  type: PAUSE,
+  payload: { player },
   error,
 })

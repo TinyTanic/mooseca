@@ -1,14 +1,22 @@
-export const play = () =>
-  new Promise(() => {
-    // code that play a song
+import { Howl } from 'howler'
+
+export const play = (song, player) =>
+  new Promise(resolve => {
+    if (player) {
+      player.stop()
+    }
+    resolve(
+      new Howl({
+        src: song.path,
+        autoplay: true,
+      })
+    )
   })
     .then(response => ({ response }))
     .catch(error => ({ error }))
 
 export const stop = () =>
-  new Promise(() => {
-    // code that stop a song
-  })
+  new Promise(() => {})
     .then(response => ({ response }))
     .catch(error => ({ error }))
 
@@ -26,9 +34,10 @@ export const prev = () =>
     .then(response => ({ response }))
     .catch(error => ({ error }))
 
-export const pause = () =>
-  new Promise(() => {
-    // code that pause a song
+export const pause = player =>
+  new Promise(resolve => {
+    player.pause()
+    resolve(player)
   })
     .then(response => ({ response }))
     .catch(error => ({ error }))

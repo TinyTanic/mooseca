@@ -31,7 +31,11 @@ class App extends Component {
       : null
     return (
       <div className="App">
-        <TopBar dispatch={this.props.dispatch} sidebar={this.props.sidebar} />
+        <TopBar
+          dispatch={this.props.dispatch}
+          sidebar={this.props.sidebar}
+          state={this.props.play}
+        />
         <div className="bottom">
           <NavBar
             onChangeView={this._handleChangeView}

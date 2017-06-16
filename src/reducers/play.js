@@ -1,13 +1,19 @@
-import { IDLE } from '../constants/playStates'
+import {
+  IDLE,
+  PLAY as PLAY_STATE,
+  PAUSE as PAUSE_STATE,
+} from '../constants/playStates'
 
-import { PLAY } from '../constants/actions'
+import { PLAY, PAUSE } from '../constants/actions'
 
 const defaultState = IDLE
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case PLAY:
-      return state
+    case PLAY_STATE:
+      return PLAY
+    case PAUSE_STATE:
+      return PAUSE
     default:
       return state
   }

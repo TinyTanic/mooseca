@@ -1,1 +1,6 @@
 export const IDLE = 'IDLE'
+export const PLAY = 'PLAY'
+export const PAUSE = 'PAUSE'
+export const STOP = 'STOP'
+export const PREV = 'PREV'
+export const NEXT = 'NEXT'
