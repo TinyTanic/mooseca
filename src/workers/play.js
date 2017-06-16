@@ -2,25 +2,31 @@ import { Howl } from 'howler'
 
 export const play = (song, player) =>
   new Promise(resolve => {
-    if (player && song) {
-      player.stop()
-    } else if (player && !song) {
-      player.play()
-      resolve(player)
-      return
-    }
-    resolve(
-      new Howl({
+    if (player) player.stop()
+    resolve({
+      player: new Howl({
         src: song.path,
         autoplay: true,
-      })
-    )
+      }),
+      song,
+    })
   })
     .then(response => ({ response }))
     .catch(error => ({ error }))
 
-export const stop = () =>
-  new Promise(() => {})
+export const resume = player =>
+  new Promise(resolve => {
+    player.play()
+    resolve(player)
+  })
+    .then(response => ({ response }))
+    .catch(error => ({ error }))
+
+export const stop = player =>
+  new Promise(resolve => {
+    player.stop()
+    resolve(null)
+  })
     .then(response => ({ response }))
     .catch(error => ({ error }))
 

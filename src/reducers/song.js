@@ -1,11 +1,10 @@
-import { PLAY, STOP, PAUSE } from '../constants/actions'
+import { PLAY, STOP } from '../constants/actions'
 
 const defaultState = null
 export default (state = defaultState, action) => {
   switch (action.type) {
     case PLAY:
-    case PAUSE:
-      return action.payload.player
+      return action.payload.song
     case STOP:
       return defaultState
     default:

@@ -3,7 +3,7 @@ import React from 'react'
 const SidebarCard = ({ song, onRemove }) =>
   <div className="sidebarcard">
     <div className="img-container">
-      <img src={song.image} />
+      <img src={song.image || '../data/generic-album.png'} />
     </div>
     <div className="meta">
       <span className="title">{song.title}</span>
