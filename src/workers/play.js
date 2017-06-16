@@ -2,8 +2,12 @@ import { Howl } from 'howler'
 
 export const play = (song, player) =>
   new Promise(resolve => {
-    if (player) {
+    if (player && song) {
       player.stop()
+    } else if (player && !song) {
+      player.play()
+      resolve(player)
+      return
     }
     resolve(
       new Howl({
