@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import SidebarCard from './SidebarCard'
 import { hideSideBar } from '../../actions/general'
+import { load } from '../../actions/library'
 
 class SideBar extends Component {
   _handleCloseClick = () => {
@@ -11,7 +12,9 @@ class SideBar extends Component {
     console.error('TODO')
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.dispatch(load())
+  }
 
   render() {
     const songs = this.props.songs

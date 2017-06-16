@@ -44,6 +44,7 @@ const _walk = file => {
         type: id3.OPEN_LOCAL,
       },
       (err, tags) => {
+        console.log(tags)
         if (err) {
           return reject(err)
         }
@@ -86,6 +87,16 @@ export const load = where => {
       resolve(docs)
     })
   })
+}
+
+export const loadOrderByAuthor = order => {
+  let songs = load({})
+  songs.sort((song1, song2) => {
+    if (order == 'DECRESCENT')
+      return song1.author.toUpperCase() > song2.author.toUpperCase()
+    else return song1.author.toUpperCase() < song2.author.toUpperCase()
+  })
+  return songs
 }
 
 export const reindex = () => {

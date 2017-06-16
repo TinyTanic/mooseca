@@ -1,15 +1,19 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { sagalize } from '../utils/sagalizator'
 
-import { SEARCH_MUSIC, LOAD_MUSIC } from '../constants/actions'
+import {
+  SEARCH_MUSIC,
+  LOAD_MUSIC,
+  LOAD_ORDER_BY_AUTHOR,
+} from '../constants/actions'
 
-import { walk, load } from '../workers/library'
+import { walk, load, loadOrderByAuthor } from '../workers/library'
 import { searchSaga, loadSaga } from '../actions/library'
 
 export function* searchMusic() {
   yield takeEvery(sagalize(SEARCH_MUSIC), function* _handleSearch(action) {
     try {
-      let dir = action.payload.dir || `${require('os').homedir()}/Musica`
+      let dir = action.payload.dir || `${require('os').homedir()}/Music`
       console.log('search music on ' + dir)
       const songs = yield call(walk, dir)
       yield put(searchSaga(songs))
@@ -29,4 +33,19 @@ export function* loadMusic() {
       yield put(loadSaga(null, error))
     }
   })
+}
+
+export function* loadMusicOrderByAuthor() {
+  yield takeEvery(
+    sagalize(LOAD_ORDER_BY_AUTHOR),
+    function* _handleLoadMusicOrderByAuthor(action) {
+      try {
+        let order = action.payload.dir || 'CRESCENT'
+        const songs = yield call(loadOrderByAuthor, order)
+        yield put(loadSaga(songs))
+      } catch (error) {
+        yield put(loadSaga(null, error))
+      }
+    }
+  )
 }
