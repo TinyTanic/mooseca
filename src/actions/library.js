@@ -23,7 +23,7 @@ export const load = where => ({
 
 export const loadSaga = (songs, error) => ({
   type: LOAD_MUSIC,
-  payload: songs,
+  payload: { songs },
   error,
 })
 
@@ -34,6 +34,6 @@ export const loadOrderByAuthor = order => ({
 
 export const loadOrderByAuthorSaga = (songs, error) => ({
   type: LOAD_ORDER_BY_AUTHOR,
-  payload: songs,
+  payload: { songs },
   error,
 })

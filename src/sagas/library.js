@@ -8,7 +8,7 @@ import {
 } from '../constants/actions'
 
 import { walk, load, loadOrderByAuthor } from '../workers/library'
-import { searchSaga, loadSaga } from '../actions/library'
+import { searchSaga, loadSaga, loadOrderByAuthorSaga } from '../actions/library'
 
 export function* searchMusic() {
   yield takeEvery(sagalize(SEARCH_MUSIC), function* _handleSearch(action) {
@@ -40,11 +40,11 @@ export function* loadMusicOrderByAuthor() {
     sagalize(LOAD_ORDER_BY_AUTHOR),
     function* _handleLoadMusicOrderByAuthor(action) {
       try {
-        let order = action.payload.dir || 'CRESCENT'
-        const songs = yield call(loadOrderByAuthor, order)
-        yield put(loadSaga(songs))
+        let order = action.payload.order || 'CRESCENT'
+        let songs = yield call(loadOrderByAuthor, order)
+        yield put(loadOrderByAuthorSaga(songs))
       } catch (error) {
-        yield put(loadSaga(null, error))
+        yield put(loadOrderByAuthorSaga(null, error))
       }
     }
   )

@@ -44,7 +44,6 @@ const _walk = file => {
         type: id3.OPEN_LOCAL,
       },
       (err, tags) => {
-        console.log(tags)
         if (err) {
           return reject(err)
         }
@@ -81,7 +80,7 @@ const _walk = file => {
 export const load = where => {
   console.log('load')
   return new Promise((resolve, reject) => {
-    //loadDB()
+    loadDB()
     libraryDb.find(where, function(err, docs) {
       if (err) reject(err)
       resolve(docs)
@@ -90,13 +89,17 @@ export const load = where => {
 }
 
 export const loadOrderByAuthor = order => {
-  let songs = load({})
-  songs.sort((song1, song2) => {
-    if (order == 'DECRESCENT')
-      return song1.author.toUpperCase() > song2.author.toUpperCase()
-    else return song1.author.toUpperCase() < song2.author.toUpperCase()
+  console.log('loadOrderByAuthor')
+  return load({}).then(songs => {
+    if (songs) {
+      songs.sort((song1, song2) => {
+        if (order == 'DECRESCENT')
+          return song1.artist.toUpperCase() < song2.artist.toUpperCase()
+        else return song1.artist.toUpperCase() > song2.artist.toUpperCase()
+      })
+      return songs
+    }
   })
-  return songs
 }
 
 export const reindex = () => {

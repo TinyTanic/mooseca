@@ -28,7 +28,7 @@ class SongsView extends Component {
     let fillers = null
     if (this.props.library && this.props.library) {
       songsEntries = this.props.library.map((song, index) => {
-        console.log(song)
+        //console.log(song)
         return (
           <tr onClick={() => this._handleClickSong(song)} key={index}>
             <td>{index}</td>
