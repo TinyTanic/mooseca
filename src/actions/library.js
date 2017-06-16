@@ -3,6 +3,7 @@ import {
   SEARCH_MUSIC,
   LOAD_MUSIC,
   LOAD_ORDER_BY_AUTHOR,
+  LOAD_ORDER_BY_ALBUM,
 } from '../constants/actions'
 
 export const search = dir => ({
@@ -34,6 +35,17 @@ export const loadOrderByAuthor = order => ({
 
 export const loadOrderByAuthorSaga = (songs, error) => ({
   type: LOAD_ORDER_BY_AUTHOR,
+  payload: { songs },
+  error,
+})
+
+export const loadOrderByAlbum = order => ({
+  type: sagalize(LOAD_ORDER_BY_ALBUM),
+  payload: { order },
+})
+
+export const loadOrderByAlbumSaga = (songs, error) => ({
+  type: LOAD_ORDER_BY_ALBUM,
   payload: { songs },
   error,
 })

@@ -102,6 +102,20 @@ export const loadOrderByAuthor = order => {
   })
 }
 
+export const loadOrderByAlbum = order => {
+  console.log('loadOrderByAlbum')
+  return load({}).then(songs => {
+    if (songs) {
+      songs.sort((song1, song2) => {
+        if (order == 'DECRESCENT')
+          return song1.album.toUpperCase() < song2.album.toUpperCase()
+        else return song1.album.toUpperCase() > song2.album.toUpperCase()
+      })
+      return songs
+    }
+  })
+}
+
 export const reindex = () => {
   console.log('reindex')
   return new Promise((resolve, reject) => {

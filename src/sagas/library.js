@@ -5,10 +5,21 @@ import {
   SEARCH_MUSIC,
   LOAD_MUSIC,
   LOAD_ORDER_BY_AUTHOR,
+  LOAD_ORDER_BY_ALBUM,
 } from '../constants/actions'
 
-import { walk, load, loadOrderByAuthor } from '../workers/library'
-import { searchSaga, loadSaga, loadOrderByAuthorSaga } from '../actions/library'
+import {
+  walk,
+  load,
+  loadOrderByAuthor,
+  loadOrderByAlbum,
+} from '../workers/library'
+import {
+  searchSaga,
+  loadSaga,
+  loadOrderByAuthorSaga,
+  loadOrderByAlbumSaga,
+} from '../actions/library'
 
 export function* searchMusic() {
   yield takeEvery(sagalize(SEARCH_MUSIC), function* _handleSearch(action) {
@@ -45,6 +56,21 @@ export function* loadMusicOrderByAuthor() {
         yield put(loadOrderByAuthorSaga(songs))
       } catch (error) {
         yield put(loadOrderByAuthorSaga(null, error))
+      }
+    }
+  )
+}
+
+export function* loadMusicOrderByAlbum() {
+  yield takeEvery(
+    sagalize(LOAD_ORDER_BY_ALBUM),
+    function* _handleLoadMusicOrderByAlbum(action) {
+      try {
+        let order = action.payload.order || 'CRESCENT'
+        let songs = yield call(loadOrderByAlbum, order)
+        yield put(loadOrderByAlbumSaga(songs))
+      } catch (error) {
+        yield put(loadOrderByAlbumSaga(null, error))
       }
     }
   )
