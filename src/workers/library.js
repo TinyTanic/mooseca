@@ -80,11 +80,25 @@ const _walk = file => {
 export const load = where => {
   console.log('load')
   return new Promise((resolve, reject) => {
-    //loadDB()
+    loadDB()
     libraryDb.find(where, function(err, docs) {
       if (err) reject(err)
       resolve(docs)
     })
+  })
+}
+
+export const loadOrderByAuthor = order => {
+  console.log('loadOrderByAuthor')
+  return load({}).then(songs => {
+    if (songs) {
+      songs.sort((song1, song2) => {
+        if (order == 'DECRESCENT')
+          return song1.artist.toUpperCase() < song2.artist.toUpperCase()
+        else return song1.artist.toUpperCase() > song2.artist.toUpperCase()
+      })
+      return songs
+    }
   })
 }
 
