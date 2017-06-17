@@ -1,7 +1,8 @@
 const fs = require('fs')
 const path = require('path')
-const id3 = require('id3js')
+const jsmediatags = require('jsmediatags')
 const Normalize = require('../utils/normalize').default
+const Promise = require('bluebird')
 
 import { libraryDb, albumsDb, artistsDb, load as loadDB } from '../db'
 
@@ -32,26 +33,25 @@ export const walk = dir => {
         promises.push(_walk(file))
       }
     })
-    return Promise.all(promises)
+    return Promise.all(promises).then(datas => {
+      // filtra rimuovendo gli oggetti undefined (trick per non bloccare la Promise.All
+      return datas.filter(item => {
+        return item
+      })
+    })
   })
 }
 
 const _walk = file => {
   return new Promise((resolve, reject) => {
-    id3(
-      {
-        file: file,
-        type: id3.OPEN_LOCAL,
-      },
-      (err, tags) => {
-        if (err) {
-          return reject(err)
-        }
-        let base64 = tags.v2.image
-          ? Normalize.hexToBase64(tags.v2.image.data)
+    jsmediatags.read(file, {
+      onSuccess: function(info) {
+        const tags = info.tags
+        let base64 = tags.picture
+          ? Normalize.hexToBase64(tags.picture.data)
           : null
         if (base64) {
-          base64 = 'data:' + tags.v2.image.mime + ';base64,' + base64
+          base64 = 'data:' + tags.picture.mime + ';base64,' + base64
         }
         let metaTag = {
           path: file,
@@ -70,10 +70,17 @@ const _walk = file => {
             upsert: true,
           }
         )
-
+        //console.log(metaTag)
         resolve(metaTag)
-      }
-    )
+      },
+      onError: function(err) {
+        console.error(
+          `failed to open '${file}'. Cause:( ${err.type} ${err.info} )`
+        )
+        // return reject(err)
+        resolve(undefined)
+      },
+    })
   })
 }
 
