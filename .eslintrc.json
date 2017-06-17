@@ -42,7 +42,9 @@
     }],
     "no-throw-literal"        : "warn",
     "no-underscore-dangle"    : "off",
-    "quotes"                  : ["error", "single"],
+    "quotes"                  : ["error", "single", {
+      "allowTemplateLiterals"   : true
+    }],
     "react/prop-types"        : 0
   }
 }
