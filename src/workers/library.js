@@ -2,6 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const jsmediatags = require('jsmediatags')
 const Normalize = require('../utils/normalize').default
+const DefaultPicture = require('../utils/normalize').default
 const Promise = require('bluebird')
 
 import { libraryDb, albumsDb, artistsDb, load as loadDB } from '../db'
@@ -25,7 +26,6 @@ export const walk = dir => {
     loadDB()
     return resolve(search(dir))
   }).then(list => {
-    // console.log(list)
     let promises = []
     list.forEach(element => {
       let file = path.resolve(element)
@@ -47,18 +47,17 @@ const _walk = file => {
     jsmediatags.read(file, {
       onSuccess: function(info) {
         const tags = info.tags
-        let base64 = tags.picture
-          ? Normalize.hexToBase64(tags.picture.data)
+        let picture = tags.picture
+          ? `data:${tags.picture.format};base64,${new Buffer(
+              tags.picture.data
+            ).toString('base64')}`
           : null
-        if (base64) {
-          base64 = 'data:' + tags.picture.mime + ';base64,' + base64
-        }
         let metaTag = {
           path: file,
           title: tags.title,
           artist: Normalize.toUnicode((tags.artist || 'Unknown').trim()),
           album: Normalize.toUnicode((tags.album || 'Unknown').trim()),
-          // image: base64
+          picture: picture,
         }
 
         libraryDb.update(
@@ -70,7 +69,7 @@ const _walk = file => {
             upsert: true,
           }
         )
-        //console.log(metaTag)
+        if (!metaTag.picture) metaTag.picture = DefaultPicture.getGenericAlbum()
         resolve(metaTag)
       },
       onError: function(err) {
