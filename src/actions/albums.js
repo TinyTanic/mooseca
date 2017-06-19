@@ -1,11 +1,11 @@
 import { sagalize } from '../utils/sagalizator'
 import { LOAD_ALBUMS, LOAD_ALBUMS_SONGS } from '../constants/actions'
 
-export const loadAlbum = () => ({
+export const loadAlbums = () => ({
   type: sagalize(LOAD_ALBUMS),
 })
 
-export const loadAlbumSaga = (albums, error) => ({
+export const loadAlbumsSaga = (albums, error) => ({
   type: LOAD_ALBUMS,
   payload: { albums },
   error,

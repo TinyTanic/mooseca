@@ -1,7 +1,7 @@
 import { libraryDb, load as loadDB } from '../db'
 import { loadOrderByAlbum } from './library'
 
-export const loadAlbumWorker = () => {
+export const loadAlbumsWorker = () => {
   console.log('load Album')
   return loadOrderByAlbum().then(songs => {
     let lastAlbum = { title: '', artist: '', picture: '' }

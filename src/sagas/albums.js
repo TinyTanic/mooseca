@@ -3,16 +3,16 @@ import { sagalize } from '../utils/sagalizator'
 
 import { LOAD_ALBUMS, LOAD_ALBUMS_SONGS } from '../constants/actions'
 
-import { loadAlbumWorker, loadAlbumsSongsWorker } from '../workers/album'
-import { loadAlbumSaga, loadAlbumsSongsSaga } from '../actions/album'
+import { loadAlbumsWorker, loadAlbumsSongsWorker } from '../workers/albums'
+import { loadAlbumsSaga, loadAlbumsSongsSaga } from '../actions/albums'
 
-export function* loadAlbum() {
-  yield takeEvery(sagalize(LOAD_ALBUMS), function* _handleAlbum(action) {
+export function* loadAlbums() {
+  yield takeEvery(sagalize(LOAD_ALBUMS), function* _handleAlbums() {
     try {
-      const albums = yield call(loadAlbumWorker)
-      yield put(loadAlbumSaga(albums))
+      const albums = yield call(loadAlbumsWorker)
+      yield put(loadAlbumsSaga(albums))
     } catch (error) {
-      yield put(loadAlbumSaga(null, error))
+      yield put(loadAlbumsSaga(null, error))
     }
   })
 }

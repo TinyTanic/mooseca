@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
 import AlbumCard from '../partials/AlbumCard'
-import { loadAlbum, loadAlbumsSongs } from '../../actions/album'
+import { loadAlbums, loadAlbumsSongs } from '../../actions/albums'
 
 class Album extends Component {
   componentDidMount() {
-    this.props.dispatch(loadAlbum())
+    this.props.dispatch(loadAlbums())
   }
 
   _handleClickPlay = album => {
