@@ -42,7 +42,7 @@ export const walk = dir => {
 }
 
 const _walk = file => {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     jsmediatags.read(file, {
       onSuccess: function(info) {
         const tags = info.tags
@@ -52,12 +52,13 @@ const _walk = file => {
             ).toString('base64')}`
           : null
         //TODO: creare un file con picture e caricare l'url sul db
+        picture = null
         let metaTag = {
           path: file,
           title: tags.title,
           artist: Normalize.toUnicode((tags.artist || 'Unknown').trim()),
           album: Normalize.toUnicode((tags.album || 'Unknown').trim()),
-          //picture: picture,
+          picture: picture,
         }
         if (!metaTag.title)
           metaTag.title = () => {
@@ -127,9 +128,10 @@ export const loadOrderByAlbum = order => {
   })
 }
 
+// TODO: Old code... check and fix
 export const reindex = () => {
   console.log('reindex')
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     const albums = []
     const artists = []
 

@@ -4,7 +4,7 @@ import view from './view'
 import songs from './songs'
 import play from './play'
 import library from './library'
-import albums from './album'
+import { albums, album } from './albums'
 import sidebar from './sidebar'
 import player from './player'
 import song from './song'
@@ -16,6 +16,7 @@ export default combineReducers({
   play,
   library,
   albums,
+  album,
   sidebar,
   player,
   song,

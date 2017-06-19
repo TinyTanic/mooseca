@@ -5,7 +5,7 @@ import {
   loadMusicOrderByAuthor,
   loadMusicOrderByAlbum,
 } from './library'
-import { loadAlbum } from './album'
+import { loadAlbums, loadAlbumsSongs } from './albums'
 import { loadArtists } from './artists'
 
 function* rootSagas() {
@@ -16,8 +16,9 @@ function* rootSagas() {
     loadMusic(),
     loadMusicOrderByAuthor(),
     loadMusicOrderByAlbum(),
-    loadAlbum(),
+    loadAlbums(),
     loadArtists(),
+    loadAlbumsSongs(),
   ]
 }
 
