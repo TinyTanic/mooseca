@@ -47,7 +47,7 @@ class TopBar extends Component {
           />
           <VolumeControl />
         </div>
-        <Info onClickQueue={this._handleClickQueue} />
+        <Info onClickQueue={this._handleClickQueue} song={this.props.song} />
         <Search />
         <WindowButtons />
       </div>

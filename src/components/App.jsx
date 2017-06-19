@@ -35,6 +35,7 @@ class App extends Component {
           dispatch={this.props.dispatch}
           sidebar={this.props.sidebar}
           state={this.props.play}
+          song={this.props.song}
         />
         <div className="bottom">
           <NavBar
