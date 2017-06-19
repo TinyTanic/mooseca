@@ -1,1 +1,1 @@
-export default state => ({ library: state.library })
+export default state => ({ artists: state.artists })
