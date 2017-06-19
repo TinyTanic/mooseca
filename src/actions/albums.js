@@ -16,8 +16,8 @@ export const loadAlbumsSongs = album => ({
   payload: { album },
 })
 
-export const loadAlbumsSongsSaga = (songs, error) => ({
+export const loadAlbumsSongsSaga = (album, error) => ({
   type: LOAD_ALBUMS_SONGS,
-  payload: { songs },
+  payload: { album },
   error,
 })

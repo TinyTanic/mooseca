@@ -23,8 +23,9 @@ export function* loadAlbumsSongs() {
   ) {
     try {
       const album = action.payload.album || { title: '', artist: '' }
-      const songs = yield call(loadAlbumsSongsWorker, album)
-      yield put(loadAlbumsSongsSaga(songs))
+      album.songs = yield call(loadAlbumsSongsWorker, album)
+
+      yield put(loadAlbumsSongsSaga(album))
     } catch (error) {
       yield put(loadAlbumsSongsSaga(null, error))
     }
