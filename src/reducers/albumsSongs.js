@@ -1,11 +1,11 @@
-import { LOAD_ALBUMS } from '../constants/actions'
+import { LOAD_ALBUMS_SONGS } from '../constants/actions'
 
 const defaultState = []
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case LOAD_ALBUMS:
-      return action.payload.albums || []
+    case LOAD_ALBUMS_SONGS:
+      return action.payload.songs || []
     default:
       return state
   }

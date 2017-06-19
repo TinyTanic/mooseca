@@ -1,4 +1,4 @@
-import { libraryDb, albumsDb, artistsDb, load as loadDB } from '../db'
+import { libraryDb, load as loadDB } from '../db'
 import { loadOrderByAlbum } from './library'
 
 export const loadAlbumWorker = () => {
@@ -17,5 +17,19 @@ export const loadAlbumWorker = () => {
       }
     })
     return albums
+  })
+}
+
+export const loadAlbumsSongsWorker = album => {
+  console.log('load Album\'s Songs')
+  return new Promise((resolve, reject) => {
+    loadDB()
+    libraryDb.find(
+      { $and: [{ artist: album.artist }, { album: album.title }] },
+      (err, docs) => {
+        if (err) reject(err)
+        resolve(docs)
+      }
+    )
   })
 }

@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 
 import AlbumCard from '../partials/AlbumCard'
-import { loadAlbum } from '../../actions/album'
+import { loadAlbum, loadAlbumsSongs } from '../../actions/album'
 
 class Album extends Component {
   componentDidMount() {
     this.props.dispatch(loadAlbum())
+  }
+
+  _handleClickPlay = album => {
+    this.props.dispatch(loadAlbumsSongs(album))
   }
 
   render() {
@@ -14,7 +18,11 @@ class Album extends Component {
       <div className="album-view">
         {albums.map(album => {
           return (
-            <AlbumCard album={album} key={`${album.title}-${album.artist}`} />
+            <AlbumCard
+              album={album}
+              key={`${album.title}-${album.artist}`}
+              onClickPlay={this._handleClickPlay}
+            />
           )
         })}
       </div>
