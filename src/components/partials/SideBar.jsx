@@ -12,9 +12,7 @@ class SideBar extends Component {
     console.error('TODO')
   }
 
-  componentDidMount() {
-    // this.props.dispatch(load())
-  }
+  componentDidMount() {}
 
   render() {
     const songs = this.props.songs

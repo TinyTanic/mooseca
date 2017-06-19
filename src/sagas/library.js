@@ -24,7 +24,7 @@ import {
 export function* searchMusic() {
   yield takeEvery(sagalize(SEARCH_MUSIC), function* _handleSearch(action) {
     try {
-      let dir = action.payload.dir || `${require('os').homedir()}/Music`
+      let dir = action.payload.dir || `${require('os').homedir()}/Musica`
       console.log('search music on ' + dir)
       const songs = yield call(walk, dir)
       yield put(searchSaga(songs))
