@@ -40,8 +40,7 @@ export function* playSong() {
         if (error) throw error
         finalResp = response
       }
-
-      console.log(currSong, finalResp)
+      console.log(finalResp)
       yield put(playSaga(finalResp.song, finalResp.player))
     } catch (error) {
       yield put(playSaga(null, null, error))

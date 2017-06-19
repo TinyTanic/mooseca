@@ -3,13 +3,16 @@ import { Howl } from 'howler'
 export const play = (song, player) =>
   new Promise(resolve => {
     if (player) player.stop()
-    resolve({
-      player: new Howl({
-        src: song.path,
-        autoplay: true,
-      }),
-      song,
+    const sound = new Howl({
+      src: song.path,
+      autoplay: true,
     })
+    sound.on('load', () =>
+      resolve({
+        player: sound,
+        song,
+      })
+    )
   })
     .then(response => ({ response }))
     .catch(error => ({ error }))
