@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
 
 import { play } from '../../actions/play'
+import { load } from '../../actions/library'
 
 class Songs extends Component {
   _handleClickSong = song => {
     this.props.dispatch(play(song))
+  }
+
+  componentDidMount() {
+    this.props.dispatch(load())
   }
 
   render() {
