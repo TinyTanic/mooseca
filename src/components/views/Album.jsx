@@ -1,21 +1,22 @@
 import React, { Component } from 'react'
 
 import AlbumCard from '../partials/AlbumCard'
-
-const album = { title: 'album', artist: 'artist' }
+import { loadAlbum } from '../../actions/album'
 
 class Album extends Component {
+  componentDidMount() {
+    this.props.dispatch(loadAlbum())
+  }
+
   render() {
+    const albums = this.props.library || []
     return (
       <div className="album-view">
-        <AlbumCard album={album} />
-        <AlbumCard album={album} />
-        <AlbumCard album={album} />
-        <AlbumCard album={album} />
-        <AlbumCard album={album} />
-        <AlbumCard album={album} />
-        <AlbumCard album={album} />
-        <AlbumCard album={album} />
+        {albums.map(album => {
+          return (
+            <AlbumCard album={album} key={`${album.title}-${album.artist}`} />
+          )
+        })}
       </div>
     )
   }
