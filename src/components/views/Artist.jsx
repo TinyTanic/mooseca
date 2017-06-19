@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-
-//import AlbumCard from '../partials/AlbumCard'
+import ArtistCard from '../partials/ArtistCard'
 import { loadArtists } from '../../actions/artists'
 
 class Artist extends Component {
@@ -8,15 +7,23 @@ class Artist extends Component {
     this.props.dispatch(loadArtists())
   }
 
+  _handleGetAlbums = artist => {
+    console.log(artist)
+  }
+
   render() {
     const artists = this.props.artists || []
     return (
       <div className="album-view">
-        <ul>
-          {artists.map(artist => {
-            return <li key={artist.name}>{artist.name}</li>
-          })}
-        </ul>
+        {artists.map(artist => {
+          return (
+            <ArtistCard
+              key={artist.name}
+              artist={artist}
+              onClickArtist={this._handleGetAlbums}
+            />
+          )
+        })}
       </div>
     )
   }
