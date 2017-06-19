@@ -13,7 +13,7 @@ class SideBar extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(load())
+    // this.props.dispatch(load())
   }
 
   render() {

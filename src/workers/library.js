@@ -51,13 +51,19 @@ const _walk = file => {
               tags.picture.data
             ).toString('base64')}`
           : null
+        //TODO: creare un file con picture e caricare l'url sul db
         let metaTag = {
           path: file,
           title: tags.title,
           artist: Normalize.toUnicode((tags.artist || 'Unknown').trim()),
           album: Normalize.toUnicode((tags.album || 'Unknown').trim()),
-          picture: picture,
+          //picture: picture,
         }
+        if (!metaTag.title)
+          metaTag.title = () => {
+            return file
+          }
+        if (!metaTag.picture) metaTag.picture = '../data/generic-album.png'
 
         libraryDb.update(
           {
@@ -68,7 +74,7 @@ const _walk = file => {
             upsert: true,
           }
         )
-        if (!metaTag.picture) metaTag.picture = '../data/generic-album.png'
+
         resolve(metaTag)
       },
       onError: function(err) {
