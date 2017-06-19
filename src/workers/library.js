@@ -2,7 +2,6 @@ const fs = require('fs')
 const path = require('path')
 const jsmediatags = require('jsmediatags')
 const Normalize = require('../utils/normalize').default
-const DefaultPicture = require('../utils/normalize').default
 const Promise = require('bluebird')
 
 import { libraryDb, albumsDb, artistsDb, load as loadDB } from '../db'
@@ -69,7 +68,7 @@ const _walk = file => {
             upsert: true,
           }
         )
-        if (!metaTag.picture) metaTag.picture = DefaultPicture.getGenericAlbum()
+        if (!metaTag.picture) metaTag.picture = '../data/generic-album.png'
         resolve(metaTag)
       },
       onError: function(err) {
