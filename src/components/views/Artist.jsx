@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ArtistCard from '../partials/ArtistCard'
-import { loadArtists } from '../../actions/artists'
+import { loadArtists, loadArtistsAlbums } from '../../actions/artists'
 
 class Artist extends Component {
   componentDidMount() {
@@ -8,7 +8,7 @@ class Artist extends Component {
   }
 
   _handleGetAlbums = artist => {
-    console.log(artist)
+    this.props.dispatch(loadArtistsAlbums(artist))
   }
 
   render() {

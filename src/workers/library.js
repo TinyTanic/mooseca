@@ -7,6 +7,7 @@ const Promise = require('bluebird')
 import { libraryDb, albumsDb, artistsDb, load as loadDB } from '../db'
 
 export const search = dir => {
+  console.log('save')
   const files = fs.readdirSync(dir)
   let list = []
   files.forEach(file => {
@@ -21,6 +22,7 @@ export const search = dir => {
 }
 
 export const walk = dir => {
+  console.log('walk')
   return new Promise(resolve => {
     loadDB()
     return resolve(search(dir))
@@ -90,7 +92,7 @@ const _walk = file => {
 }
 
 export const load = where => {
-  console.log('load')
+  console.log('loadSongs')
   return new Promise((resolve, reject) => {
     loadDB()
     libraryDb.find(where, function(err, docs) {
@@ -101,7 +103,7 @@ export const load = where => {
 }
 
 export const loadOrderByAuthor = order => {
-  console.log('loadOrderByAuthor')
+  console.log('load Songs Ordered By Author')
   return load({}).then(songs => {
     if (songs) {
       songs.sort((song1, song2) => {
@@ -114,9 +116,9 @@ export const loadOrderByAuthor = order => {
   })
 }
 
-export const loadOrderByAlbum = order => {
-  console.log('loadOrderByAlbum')
-  return load({}).then(songs => {
+export const loadOrderByAlbum = (where, order) => {
+  console.log('load Songs Orderd By Album')
+  return load(where).then(songs => {
     if (songs) {
       songs.sort((song1, song2) => {
         if (order == 'DECRESCENT')

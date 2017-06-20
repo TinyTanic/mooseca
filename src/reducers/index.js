@@ -8,7 +8,7 @@ import { albums, album } from './albums'
 import sidebar from './sidebar'
 import player from './player'
 import song from './song'
-import artists from './artists'
+import { artists, artist } from './artists'
 
 export default combineReducers({
   view,
@@ -21,4 +21,5 @@ export default combineReducers({
   player,
   song,
   artists,
+  artist,
 })
