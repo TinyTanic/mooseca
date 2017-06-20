@@ -1,6 +1,8 @@
 import { LOAD_ARTISTS_ALBUMS } from '../constants/actions'
 
-export const artist = (state = {}, action) => {
+const defaultState = { name: '', albums: '' }
+
+export default (state = defaultState, action) => {
   switch (action.type) {
     case LOAD_ARTISTS_ALBUMS:
       return action.payload.artist || state

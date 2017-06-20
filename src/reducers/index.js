@@ -10,7 +10,7 @@ import sidebar from './sidebar'
 import player from './player'
 import song from './song'
 import artists from './artists'
-import artist from './artists'
+import artist from './artist'
 
 export default combineReducers({
   view,
