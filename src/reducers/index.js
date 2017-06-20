@@ -4,11 +4,13 @@ import view from './view'
 import songs from './songs'
 import play from './play'
 import library from './library'
-import { albums, album } from './albums'
+import albums from './albums'
+import album from './album'
 import sidebar from './sidebar'
 import player from './player'
 import song from './song'
-import { artists, artist } from './artists'
+import artists from './artists'
+import artist from './artists'
 
 export default combineReducers({
   view,
